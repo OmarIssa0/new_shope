@@ -5,12 +5,12 @@ import 'package:new_shope/core/utils/app_router.dart';
 
 void main() {
   runApp(
-    const MyShopeApp(),
+    const MyApp(),
   );
 }
 
-class MyShopeApp extends StatelessWidget {
-  const MyShopeApp({super.key});
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -26,6 +26,10 @@ class MyShopeApp extends StatelessWidget {
           child: MaterialApp.router(
             debugShowCheckedModeBanner: false,
             routerConfig: AppRouter.router,
+            theme: ThemeData(
+              useMaterial3: true,
+              fontFamily: 'DMSans',
+            ),
           ),
         );
       },

@@ -45,6 +45,7 @@ class _RootViewState extends State<RootView> {
           child: ClipRRect(
             borderRadius: BorderRadius.circular(25.r),
             child: GNav(
+              selectedIndex: currentScreen,
               iconSize: 24.w,
               onTabChange: (index) {
                 setState(() {

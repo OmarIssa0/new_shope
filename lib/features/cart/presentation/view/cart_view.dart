@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:new_shope/features/cart/presentation/view/widgets/cart_view_body.dart';
 
 class CartView extends StatelessWidget {
   const CartView({super.key});
@@ -6,7 +7,7 @@ class CartView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      backgroundColor: Colors.brown,
+      body: CartViewBody(),
     );
   }
 }

@@ -29,6 +29,7 @@ class MyApp extends StatelessWidget {
             theme: ThemeData(
               useMaterial3: true,
               fontFamily: 'DMSans',
+              scaffoldBackgroundColor: Colors.white,
             ),
           ),
         );

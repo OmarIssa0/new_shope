@@ -9,33 +9,36 @@ class SwiperImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return Column(
-      children: [
-        ClipRRect(
-          borderRadius: BorderRadius.circular(25.r),
-          child: SizedBox(
-            height: size.height * 0.22,
-            // width: size.width * 0.95,
-            child: Swiper(
-              itemCount: AppConstants.bannerImage.length,
-              itemBuilder: (context, index) {
-                return Image.asset(
-                  AppConstants.bannerImage[index],
-                  fit: BoxFit.fill,
-                );
-              },
-              autoplay: true,
-              pagination: SwiperPagination(
-                alignment: Alignment.bottomCenter,
-                builder: DotSwiperPaginationBuilder(
-                  color: Colors.grey.shade300,
-                  activeColor: Colors.grey.shade700,
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 12.r),
+      child: Column(
+        children: [
+          ClipRRect(
+            borderRadius: BorderRadius.circular(25.r),
+            child: SizedBox(
+              height: size.height * 0.22,
+              // width: size.width * 0.95,
+              child: Swiper(
+                itemCount: AppConstants.bannerImage.length,
+                itemBuilder: (context, index) {
+                  return Image.asset(
+                    AppConstants.bannerImage[index],
+                    fit: BoxFit.fill,
+                  );
+                },
+                autoplay: true,
+                pagination: SwiperPagination(
+                  alignment: Alignment.bottomCenter,
+                  builder: DotSwiperPaginationBuilder(
+                    color: Colors.grey.shade300,
+                    activeColor: Colors.grey.shade700,
+                  ),
                 ),
               ),
             ),
-          ),
-        )
-      ],
+          )
+        ],
+      ),
     );
   }
 }

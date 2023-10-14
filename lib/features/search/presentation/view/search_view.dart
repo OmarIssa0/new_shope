@@ -14,7 +14,7 @@ class SearchView extends StatelessWidget {
       },
       child: Scaffold(
         appBar: AppBar(
-          title: TitleTextAppCustom(label: 'Search', fontSize: 24.sp),
+          title: TitleTextAppCustom(label: 'Search', fontSize: 20.sp),
         ),
         body: const SearchViewBody(),
       ),

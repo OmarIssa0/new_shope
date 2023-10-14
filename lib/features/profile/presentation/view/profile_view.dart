@@ -10,7 +10,7 @@ class ProfileView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: TitleTextAppCustom(label: 'Profile', fontSize: 24.sp),
+        title: TitleTextAppCustom(label: 'Profile', fontSize: 20.sp),
       ),
       body: const ProfileViewBody(),
     );

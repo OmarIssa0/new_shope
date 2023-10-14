@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:iconly/iconly.dart';
@@ -32,11 +31,12 @@ class ItemCard extends StatelessWidget {
               SizedBox(height: 10.h),
               FittedBox(
                 child: TitleTextAppCustom(
-                  label: 'Test Title' ,
+                  label: 'Test Title',
                   fontSize: 14.sp,
                   fontWeight: FontWeight.w500,
                 ),
               ),
+              SizedBox(height: 5.h),
               FittedBox(
                 child: TitleTextAppCustom(
                   label: '1500\$',
@@ -46,6 +46,7 @@ class ItemCard extends StatelessWidget {
                   // color: AppColor.kRedColorPrice,
                 ),
               ),
+              SizedBox(height: 10.h),
               Flexible(
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,

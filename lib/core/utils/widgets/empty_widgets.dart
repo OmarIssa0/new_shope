@@ -8,9 +8,10 @@ class EmptyWidgets extends StatelessWidget {
       {super.key,
       required this.title,
       required this.subTitle,
-      required this.titleBottom});
+      required this.titleBottom, required this.function});
 
   final String title, subTitle, titleBottom;
+  final Function function;
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +44,7 @@ class EmptyWidgets extends StatelessWidget {
             ),
             height: 55.h,
             color: Colors.red.shade300,
-            onPressed: () {},
+            onPressed: () {function();},
             child: TitleTextAppCustom(
               label: titleBottom,
               fontSize: 18.sp,

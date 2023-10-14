@@ -38,8 +38,11 @@ class _PlusAndMinusCountState extends State<PlusAndMinusCount> {
             ),
             child: InkWell(
               onTap: () {
-                numberCount--;
-                setState(() {});
+                if (numberCount == 1) {
+                } else if (numberCount >= 1) {
+                  numberCount--;
+                  setState(() {});
+                }
               },
               child: Icon(
                 IconlyBold.arrow_left_2,

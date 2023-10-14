@@ -6,6 +6,7 @@ import 'package:new_shope/features/search/presentation/view/search_view.dart';
 import 'package:new_shope/root_view.dart';
 
 class AppRouter {
+  static const kRoot = '/kRootView';
   static const kHome = '/kHomeView';
   static const kSearch = '/kSearchView';
   static const kCart = '/kCartView';

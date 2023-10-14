@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:new_shope/core/utils/widgets/empty_widgets.dart';
 import 'package:new_shope/core/utils/widgets/title_text.dart';
 import 'package:new_shope/features/cart/presentation/view/widgets/cart_widgets.dart';
@@ -12,12 +13,15 @@ class CartViewBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return isEmpty
-        ? const Column(
+        ? Column(
             children: [
               EmptyWidgets(
                 title: 'Whoops!',
                 subTitle: 'Your cart is empty',
                 titleBottom: 'Shope Now',
+                function: () {
+                  GoRouter.of(context).push('/');
+                },
               ),
             ],
           )

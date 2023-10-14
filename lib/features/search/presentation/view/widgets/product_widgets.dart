@@ -34,6 +34,9 @@ class _ProductWidgetsState extends State<ProductWidgets> {
                 height: size.height * 0.22,
               ),
             ),
+            SizedBox(
+              height: 15.h,
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -65,6 +68,7 @@ class _ProductWidgetsState extends State<ProductWidgets> {
                       label: '166.5\$',
                       fontSize: 18.sp,
                       color: Colors.blue.shade900,
+                      // color: AppColor.kRedColorPrice,
                     ),
                   ),
                   Flexible(

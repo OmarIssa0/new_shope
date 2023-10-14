@@ -15,11 +15,11 @@ class ShimmerTextWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Shimmer.fromColors(
-      period: const Duration(microseconds: 1),
-      baseColor: Colors.black,
-      highlightColor: Colors.white,
+      period: const Duration(seconds: 3),
+      baseColor: const Color.fromARGB(255, 0, 0, 0),
+      highlightColor: const Color.fromARGB(142, 94, 96, 96),
       child: TitleTextAppCustom(
-        fontWeight: FontWeight.w600,
+        // fontWeight: FontWeight.w600,
         label: label,
         fontSize: fontSize,
       ),

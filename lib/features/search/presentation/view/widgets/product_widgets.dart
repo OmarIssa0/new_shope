@@ -64,7 +64,7 @@ class _ProductWidgetsState extends State<ProductWidgets> {
                     child: TitleTextAppCustom(
                       label: '166.5\$',
                       fontSize: 18.sp,
-                      color: Colors.blue.shade800,
+                      color: Colors.blue.shade900,
                     ),
                   ),
                   Flexible(

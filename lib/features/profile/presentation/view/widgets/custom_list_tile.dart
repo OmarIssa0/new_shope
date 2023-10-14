@@ -17,32 +17,29 @@ class CustomListTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(25.r),
-      child: GestureDetector(
-        onTap: () {
-          function();
-        },
-        child: ListTile(
-          leading: Container(
-            height: 40.h,
-            width: 40.w,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              color: Colors.grey.shade200,
-            ),
-            child: Icon(
-              //
-              iconLeading,
-              size: 28,
-            ),
+    return GestureDetector(
+      onTap: () {
+        function();
+      },
+      child: ListTile(
+        leading: Container(
+          height: 40.h,
+          width: 40.w,
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            color: Colors.grey.shade200,
           ),
-          title: TitleTextAppCustom(label: title, fontSize: 16.sp),
-          trailing: Icon(
-            iconTrailing,
+          child: Icon(
             //
-            color: Colors.grey.shade500,
+            iconLeading,
+            size: 28,
           ),
+        ),
+        title: TitleTextAppCustom(label: title, fontSize: 16.sp),
+        trailing: Icon(
+          iconTrailing,
+          //
+          color: Colors.grey.shade500,
         ),
       ),
     );

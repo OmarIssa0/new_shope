@@ -23,19 +23,9 @@ class CartViewBody extends StatelessWidget {
           )
         : Scaffold(
             appBar: AppBar(
-              foregroundColor: Colors.white,
-              surfaceTintColor: Colors.white,
-              backgroundColor: Colors.white,
-              title: Row(
-                // crossAxisAlignment: CrossAxisAlignment.,
-                // mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  TitleTextAppCustom(
-                    label: 'Cart (5)',
-                    fontSize: 20.sp,
-                    // fontWeight: FontWeight.w600,
-                  ),
-                ],
+              title: TitleTextAppCustom(
+                label: 'Cart (5)',
+                fontSize: 20.sp,
               ),
               actions: [
                 IconButton(

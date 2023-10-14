@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:new_shope/core/utils/widgets/empty_widgets.dart';
 import 'package:new_shope/core/utils/widgets/title_text.dart';
 import 'package:new_shope/features/cart/presentation/view/widgets/cart_widgets.dart';
@@ -25,14 +26,14 @@ class CartViewBody extends StatelessWidget {
               foregroundColor: Colors.white,
               surfaceTintColor: Colors.white,
               backgroundColor: Colors.white,
-              title: const Row(
+              title: Row(
                 // crossAxisAlignment: CrossAxisAlignment.,
-                mainAxisAlignment: MainAxisAlignment.end,
+                // mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   TitleTextAppCustom(
                     label: 'Cart (5)',
-                    fontSize: 18,
-                    fontWeight: FontWeight.w600,
+                    fontSize: 20.sp,
+                    // fontWeight: FontWeight.w600,
                   ),
                 ],
               ),

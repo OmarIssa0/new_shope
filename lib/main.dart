@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:new_shope/core/utils/app_router.dart';
+import 'package:new_shope/core/utils/theme_data.dart';
 
 void main() {
   runApp(
@@ -26,11 +27,7 @@ class MyApp extends StatelessWidget {
           child: MaterialApp.router(
             debugShowCheckedModeBanner: false,
             routerConfig: AppRouter.router,
-            theme: ThemeData(
-              useMaterial3: true,
-              fontFamily: 'DMSans',
-              scaffoldBackgroundColor: Colors.white,
-            ),
+            theme: Styles.themeData(context: context),
           ),
         );
       },

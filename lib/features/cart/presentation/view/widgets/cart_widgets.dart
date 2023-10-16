@@ -38,7 +38,7 @@ class CartWidgets extends StatelessWidget {
                         SizedBox(
                           width: size.width * 0.6,
                           child: TitleTextAppCustom(
-                            label: 'Title' * 10,
+                            label: 'Title' * 30,
                             fontSize: 18.sp,
                             maxLine: 2,
                           ),
@@ -56,12 +56,15 @@ class CartWidgets extends StatelessWidget {
                               onPressed: () {},
                               icon: const Icon(
                                 IconlyLight.heart,
-                                color: Colors.red,
+                                // color: Colors.red,
                               ),
                             ),
                           ],
                         )
                       ],
+                    ),
+                    SizedBox(
+                      height: 18.h,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,

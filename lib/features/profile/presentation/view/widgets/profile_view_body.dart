@@ -37,6 +37,9 @@ class ProfileViewBody extends StatelessWidget {
                     function: () {},
                   ),
                 ),
+                SizedBox(
+                  height: 100.h,
+                ),
               ],
             ),
           )

@@ -12,6 +12,8 @@ class DetailsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBody: true,
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         centerTitle: true,
         title: TitleTextAppCustom(
@@ -30,8 +32,8 @@ class DetailsView extends StatelessWidget {
         ),
         elevation: 5,
       ),
-      body: const DetailsViewBody(),
       bottomNavigationBar: const BottomNavBarDetailsView(),
+      body: const DetailsViewBody(),
     );
   }
 }

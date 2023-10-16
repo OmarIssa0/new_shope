@@ -14,19 +14,17 @@ class BoxItemCard extends StatelessWidget {
       onTap: () async {
         await GoRouter.of(context).push(AppRouter.kDetails);
       },
-      child: Flexible(
-        child: Container(
-          margin: EdgeInsets.symmetric(horizontal: 5.r, vertical: 7.5.r),
-          child: Material(
-            shadowColor: Colors.white70,
-            type: MaterialType.card,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(15.r),
-            ),
-            elevation: 3,
-            color: Colors.white,
-            child: const ItemCard(),
+      child: Container(
+        margin: EdgeInsets.symmetric(horizontal: 5.r, vertical: 7.5.r),
+        child: Material(
+          shadowColor: Colors.white70,
+          type: MaterialType.card,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(15.r),
           ),
+          elevation: 3,
+          color: Colors.white,
+          child: const ItemCard(),
         ),
       ),
     );

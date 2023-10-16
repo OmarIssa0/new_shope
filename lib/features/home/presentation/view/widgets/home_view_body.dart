@@ -3,7 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:new_shope/core/utils/widgets/title_text.dart';
 import 'package:new_shope/features/home/presentation/view/widgets/box_item_card.dart';
 import 'package:new_shope/features/home/presentation/view/widgets/swiper_image.dart';
-
 import 'grid_view_category.dart';
 
 class HomeViewBody extends StatelessWidget {
@@ -62,7 +61,7 @@ class HomeViewBody extends StatelessWidget {
             ),
           ),
           const SizedBox(
-            height: BouncingScrollSimulation.maxSpringTransferVelocity,
+            height: 150,
           ),
         ],
       ),

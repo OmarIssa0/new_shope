@@ -1,9 +1,9 @@
-import 'dart:developer';
-
 import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:iconly/iconly.dart';
+import 'package:new_shope/core/utils/app_router.dart';
 import 'package:new_shope/core/utils/widgets/title_text.dart';
 
 class ProductWidgets extends StatefulWidget {
@@ -21,8 +21,8 @@ class _ProductWidgetsState extends State<ProductWidgets> {
       padding: const EdgeInsets.all(3.0),
       child: InkWell(
         borderRadius: BorderRadius.circular(14.r),
-        onTap: () {
-          log('TODO Nav screen');
+        onTap: () async{
+          await GoRouter.of(context).push(AppRouter.kDetails);
         },
         child: Column(
           children: [

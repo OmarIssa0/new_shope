@@ -1,5 +1,6 @@
 import 'package:go_router/go_router.dart';
 import 'package:new_shope/features/cart/presentation/view/cart_view.dart';
+import 'package:new_shope/features/details/presentation/view/details_view.dart';
 import 'package:new_shope/features/home/presentation/view/home_view.dart';
 import 'package:new_shope/features/profile/presentation/view/profile_view.dart';
 import 'package:new_shope/features/search/presentation/view/search_view.dart';
@@ -11,6 +12,7 @@ class AppRouter {
   static const kSearch = '/kSearchView';
   static const kCart = '/kCartView';
   static const kProfile = '/kProfileView';
+  static const kDetails = '/kDetailsView';
 
   static final router = GoRouter(
     routes: [
@@ -33,6 +35,10 @@ class AppRouter {
       GoRoute(
         path: kProfile,
         builder: (context, state) => const ProfileView(),
+      ),
+      GoRoute(
+        path: kDetails,
+        builder: (context, state) => const DetailsView(),
       ),
     ],
   );

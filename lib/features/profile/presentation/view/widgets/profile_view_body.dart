@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:iconly/iconly.dart';
+import 'package:new_shope/core/utils/widgets/alert_dialog.dart';
 import 'package:new_shope/core/utils/widgets/title_text.dart';
 import 'package:new_shope/features/profile/presentation/view/widgets/custom_list_tile.dart';
 import 'package:new_shope/features/profile/presentation/view/widgets/general_list.dart';
@@ -33,8 +34,16 @@ class ProfileViewBody extends StatelessWidget {
                   child: CustomListTile(
                     iconLeading: IconlyBold.logout,
                     iconTrailing: IconlyLight.arrow_right_2,
-                    title: 'Logout',
-                    function: () {},
+                    title: 'Log out',
+                    function: () async {
+                      await AlertDialogMethods.showDialogWaring(
+                        context: context,
+                        titleBottom: 'Logout',
+                        lottileAnimation: 'assets/lottile/logout.json',
+                        function: () {},
+                        isError: false,
+                      );
+                    },
                   ),
                 ),
                 SizedBox(

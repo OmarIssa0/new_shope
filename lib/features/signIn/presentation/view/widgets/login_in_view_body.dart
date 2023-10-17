@@ -88,7 +88,9 @@ class LoginInViewBody extends StatelessWidget {
                 width: 8.w,
               ),
               GestureDetector(
-                onTap: () {},
+                onTap: () {
+                  GoRouter.of(context).push(AppRouter.kSignUp);
+                },
                 child: TitleTextAppCustom(
                   label: 'Sign up',
                   fontSize: 16.sp,
@@ -97,7 +99,10 @@ class LoginInViewBody extends StatelessWidget {
                 ),
               )
             ],
-          )
+          ),
+          SizedBox(
+            height: 50.h,
+          ),
         ],
       ),
     );

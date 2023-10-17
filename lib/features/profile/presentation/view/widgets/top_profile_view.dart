@@ -35,12 +35,12 @@ class TopProfileView extends StatelessWidget {
                       width: 3,
                       color: Colors.grey.shade500,
                     ),
-                    image: const DecorationImage(
-                      image: NetworkImage(
-                        'http://www.shadowsphotography.co/wp-content/uploads/2017/12/photography-01-800x400.jpg',
-                      ),
-                      fit: BoxFit.fill,
-                    ),
+                    // image: const DecorationImage(
+                    //   image: NetworkImage(
+                    //     'http://www.shadowsphotography.co/wp-content/uploads/2017/12/photography-01-800x400.jpg',
+                    //   ),
+                    //   fit: BoxFit.fill,
+                    // ),
                   ),
                 ),
                 SizedBox(
@@ -65,7 +65,7 @@ class TopProfileView extends StatelessWidget {
               ],
             ),
           ),
-        )
+        ),
       ],
     );
   }

@@ -8,6 +8,7 @@ class TitleTextAppCustom extends StatelessWidget {
     required this.fontSize,
     this.maxLine = 1,
     this.fontWeight = FontWeight.normal,
+    this.decoration = TextDecoration.none,
   });
 
   final String label;
@@ -15,6 +16,7 @@ class TitleTextAppCustom extends StatelessWidget {
   final double fontSize;
   final int maxLine;
   final FontWeight fontWeight;
+  final TextDecoration decoration;
 
   @override
   Widget build(BuildContext context) {
@@ -26,6 +28,7 @@ class TitleTextAppCustom extends StatelessWidget {
         fontSize: fontSize,
         overflow: TextOverflow.ellipsis,
         fontWeight: fontWeight,
+        decoration: decoration,
       ),
     );
   }

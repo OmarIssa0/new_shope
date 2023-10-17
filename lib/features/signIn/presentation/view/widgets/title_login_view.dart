@@ -8,23 +8,27 @@ class TitleLoginView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        SizedBox(
-          height: 50.h,
-        ),
-        TitleTextAppCustom(
-          label: 'Smart Shop',
-          fontSize: 20.sp,
-          fontWeight: FontWeight.w600,
-        ),
-        TitleTextAppCustom(
-          label: "Let's get you logged in so you can start exploring.",
-          fontSize: 12.sp,
-          maxLine: 2,
-        ),
-      ],
+    return Padding(
+      padding: EdgeInsets.all(14.0.r),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          SizedBox(
+            width: double.infinity,
+            height: 65.h,
+          ),
+          TitleTextAppCustom(
+            label: 'Smart Shop',
+            fontSize: 20.sp,
+            fontWeight: FontWeight.w600,
+          ),
+          TitleTextAppCustom(
+            label: "Let's get you logged in so you can start exploring.",
+            fontSize: 12.sp,
+            maxLine: 2,
+          ),
+        ],
+      ),
     );
   }
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:iconly/iconly.dart';
 import 'package:new_shope/core/utils/widgets/alert_dialog.dart';
 import 'package:new_shope/core/utils/widgets/title_text.dart';
@@ -40,7 +41,9 @@ class ProfileViewBody extends StatelessWidget {
                         context: context,
                         titleBottom: 'Logout',
                         lottileAnimation: 'assets/lottile/logout.json',
-                        function: () {},
+                        function: () {
+                          GoRouter.of(context).pushReplacement('/');
+                        },
                         isError: false,
                       );
                     },

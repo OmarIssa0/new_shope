@@ -10,6 +10,7 @@ class HomeView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         title: ShimmerTextWidget(label: 'Smart Shope', fontSize: 20.sp),
       ),
       body: const HomeViewBody(),

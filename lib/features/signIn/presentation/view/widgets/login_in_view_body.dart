@@ -2,13 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:ionicons/ionicons.dart';
+import 'package:new_shope/core/utils/animation_nav.dart';
 import 'package:new_shope/core/utils/app_router.dart';
 import 'package:new_shope/core/utils/widgets/title_text.dart';
-import 'package:new_shope/features/signIn/presentation/view/widgets/bottom_signIn.dart';
 import 'package:new_shope/features/signIn/presentation/view/widgets/text_filed_login.dart';
 import 'package:new_shope/features/signIn/presentation/view/widgets/title_login_view.dart';
-
-import 'forgot_pawword_login_view.dart';
 
 class LoginInViewBody extends StatelessWidget {
   const LoginInViewBody({super.key});
@@ -35,18 +33,8 @@ class LoginInViewBody extends StatelessWidget {
             ),
           ),
           const TitleLoginView(),
-          SizedBox(
-            height: 40.h,
-          ),
+          SizedBox(height: 40.h),
           const LoginTextFiled(),
-          SizedBox(
-            height: 10.h,
-          ),
-          const ForGotPasswordLoginView(),
-          SizedBox(
-            height: 15.h,
-          ),
-          const BottomSignIn(),
           Divider(
             height: 70.h,
             endIndent: 30.r,
@@ -76,9 +64,7 @@ class LoginInViewBody extends StatelessWidget {
               // ),
             ],
           ),
-          SizedBox(
-            height: 50.h,
-          ),
+          SizedBox(height: 50.h),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -89,7 +75,7 @@ class LoginInViewBody extends StatelessWidget {
               ),
               GestureDetector(
                 onTap: () {
-                  GoRouter.of(context).push(AppRouter.kSignUp);
+                  Navigator.of(context).push(AnimationNav.createRouteSignUp());
                 },
                 child: TitleTextAppCustom(
                   label: 'Sign up',

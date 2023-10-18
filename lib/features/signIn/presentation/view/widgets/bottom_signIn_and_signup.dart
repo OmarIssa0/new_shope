@@ -1,12 +1,15 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:new_shope/core/utils/widgets/title_text.dart';
 
-class BottomSignIn extends StatelessWidget {
-  const BottomSignIn({
+class BottomSignInAndSignUp extends StatelessWidget {
+  const BottomSignInAndSignUp({
     super.key,
+    required this.function, required this.name,
   });
+
+  final Function function;
+  final String name;
 
   @override
   Widget build(BuildContext context) {
@@ -20,10 +23,10 @@ class BottomSignIn extends StatelessWidget {
         minWidth: double.infinity,
         height: 50,
         onPressed: () {
-          
+          function();
         },
         child: TitleTextAppCustom(
-          label: 'Sign in',
+          label: name,
           fontSize: 16.sp,
           color: Colors.white,
         ),

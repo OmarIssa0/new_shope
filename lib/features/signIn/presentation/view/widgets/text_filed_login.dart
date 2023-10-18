@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:iconly/iconly.dart';
+import 'package:new_shope/features/signIn/presentation/view/widgets/bottom_signIn_and_signup.dart';
+import 'package:new_shope/features/signIn/presentation/view/widgets/forgot_pawword_login_view.dart';
 
 import '../../../../../core/constant/my_validators.dart';
 
@@ -60,6 +62,7 @@ class _LoginTextFiledState extends State<LoginTextFiled> {
         child: Form(
           key: _formKey,
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               TextFormField(
                 controller: _emailTextController,
@@ -109,6 +112,20 @@ class _LoginTextFiledState extends State<LoginTextFiled> {
                 },
                 validator: (value) {
                   return MyValidators.passwordValidator(value);
+                },
+              ),
+              // تم اضافتهم هنا بسبب ال validator
+              SizedBox(
+                height: 10.h,
+              ),
+              const ForGotPasswordLoginView(),
+              SizedBox(
+                height: 15.h,
+              ),
+              BottomSignInAndSignUp(
+                name: 'Sign in',
+                function: () {
+                  _loginFun();
                 },
               ),
             ],

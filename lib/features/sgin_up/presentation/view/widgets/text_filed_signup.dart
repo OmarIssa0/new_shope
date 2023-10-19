@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:iconly/iconly.dart';
 
 import '../../../../../core/constant/my_validators.dart';
+import '../../../../../core/utils/animation_nav.dart';
 import '../../../../signIn/presentation/view/widgets/bottom_signIn_and_signup.dart';
 
 class TextFiledSignUp extends StatefulWidget {
@@ -58,11 +59,12 @@ class _TextFiledSignUpState extends State<TextFiledSignUp> {
     super.dispose();
   }
 
-  
   Future<void> _signUpFct() async {
     final isValid = _formKey.currentState!.validate();
     FocusScope.of(context).unfocus();
-    if (isValid) {}
+    if (isValid) {
+      Navigator.of(context).push(AnimationNav.createRouteHomeView());
+    }
   }
 
   @override
@@ -186,7 +188,7 @@ class _TextFiledSignUpState extends State<TextFiledSignUp> {
               },
             ),
             SizedBox(
-              height: 35.h,
+              height: 44.h,
             ),
             BottomSignInAndSignUp(
               function: () {

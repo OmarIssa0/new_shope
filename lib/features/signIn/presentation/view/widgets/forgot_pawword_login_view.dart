@@ -11,11 +11,12 @@ class ForGotPasswordLoginView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 12.r),
+      padding: EdgeInsets.symmetric(horizontal: 10.r),
       child: InkWell(
+        borderRadius: BorderRadius.circular(25.r),
         onTap: () {},
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 8.r, vertical: 10.r),
+          padding: EdgeInsets.symmetric(horizontal: 8.r, vertical: 8.r),
           child: TitleTextAppCustom(
             label: 'Forgot Password ?',
             fontSize: 12.sp,

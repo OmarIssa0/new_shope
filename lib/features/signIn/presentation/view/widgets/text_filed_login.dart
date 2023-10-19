@@ -5,6 +5,7 @@ import 'package:new_shope/features/signIn/presentation/view/widgets/bottom_signI
 import 'package:new_shope/features/signIn/presentation/view/widgets/forgot_pawword_login_view.dart';
 
 import '../../../../../core/constant/my_validators.dart';
+import '../../../../../core/utils/animation_nav.dart';
 
 class LoginTextFiled extends StatefulWidget {
   const LoginTextFiled({super.key});
@@ -50,7 +51,9 @@ class _LoginTextFiledState extends State<LoginTextFiled> {
   Future<void> _loginFun() async {
     final isValid = _formKey.currentState!.validate();
     FocusScope.of(context).unfocus();
-    if (isValid) {}
+    if (isValid) {
+      Navigator.of(context).push(AnimationNav.createRouteHomeView());
+    }
   }
 
   @override

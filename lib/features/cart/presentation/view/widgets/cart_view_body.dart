@@ -27,6 +27,7 @@ class CartViewBody extends StatelessWidget {
           )
         : Scaffold(
             appBar: AppBar(
+              automaticallyImplyLeading: false,
               title: TitleTextAppCustom(
                 label: 'Cart (5)',
                 fontSize: 20.sp,

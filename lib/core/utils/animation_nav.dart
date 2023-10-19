@@ -58,7 +58,7 @@ class AnimationNav {
       transitionsBuilder: (context, animation, secondaryAnimation, child) {
         const begin = Offset(5.0, 0.0);
         const end = Offset.zero;
-        const curve = Curves.easeOut;
+        const curve = Curves.easeIn;
 
         var tween =
             Tween(begin: begin, end: end).chain(CurveTween(curve: curve));

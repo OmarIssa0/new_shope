@@ -5,7 +5,8 @@ import 'package:new_shope/core/utils/widgets/title_text.dart';
 class BottomSignInAndSignUp extends StatelessWidget {
   const BottomSignInAndSignUp({
     super.key,
-    required this.function, required this.name,
+    required this.function,
+    required this.name,
   });
 
   final Function function;

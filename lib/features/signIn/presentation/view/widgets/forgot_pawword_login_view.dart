@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:new_shope/core/utils/animation_nav.dart';
 
 import '../../../../../core/utils/widgets/title_text.dart';
 
@@ -14,7 +15,9 @@ class ForGotPasswordLoginView extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: 10.r),
       child: InkWell(
         borderRadius: BorderRadius.circular(25.r),
-        onTap: () {},
+        onTap: () {
+          Navigator.of(context).push(AnimationNav.createRouteForgotPassword());
+        },
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 8.r, vertical: 8.r),
           child: TitleTextAppCustom(

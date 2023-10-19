@@ -1,29 +1,30 @@
 import 'package:flutter/cupertino.dart';
+import 'package:new_shope/features/forgot_password/presentation/view/forgot_password_view.dart';
 import 'package:new_shope/features/sgin_up/presentation/view/signup_view.dart';
 import 'package:new_shope/root_view.dart';
 
 class AnimationNav {
-  // static Route createRouteSigIn() {
-  //   return PageRouteBuilder(
-  //     transitionDuration: const Duration(seconds: 1),
-  //     reverseTransitionDuration: const Duration(seconds: 1),
-  //     pageBuilder: (context, animation, secondaryAnimation) =>
-  //         const LoginView(),
-  //     transitionsBuilder: (context, animation, secondaryAnimation, child) {
-  //       const begin = Offset(5.0, 0.0);
-  //       const end = Offset.zero;
-  //       const curve = Curves.ease;
+  static Route createRouteForgotPassword() {
+    return PageRouteBuilder(
+      transitionDuration: const Duration(seconds: 1),
+      reverseTransitionDuration: const Duration(seconds: 1),
+      pageBuilder: (context, animation, secondaryAnimation) =>
+          const ForgotPasswordView(),
+      transitionsBuilder: (context, animation, secondaryAnimation, child) {
+        const begin = Offset(5.0, 0.0);
+        const end = Offset.zero;
+        const curve = Curves.ease;
 
-  //       var tween =
-  //           Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+        var tween =
+            Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
 
-  //       return SlideTransition(
-  //         position: animation.drive(tween),
-  //         child: const LoginView(),
-  //       );
-  //     },
-  //   );
-  // }
+        return SlideTransition(
+          position: animation.drive(tween),
+          child: const ForgotPasswordView(),
+        );
+      },
+    );
+  }
 
   static Route createRouteSignUp() {
     return PageRouteBuilder(

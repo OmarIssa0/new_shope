@@ -28,7 +28,12 @@ class SignUpView extends StatelessWidget {
           fontSize: 20.sp,
         ),
       ),
-      body: const SignUpBodyView(),
+      body: GestureDetector(
+        onTap: () {
+          FocusScope.of(context).unfocus();
+        },
+        child: const SignUpBodyView(),
+      ),
     );
   }
 }

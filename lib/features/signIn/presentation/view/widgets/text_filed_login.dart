@@ -68,6 +68,7 @@ class _LoginTextFiledState extends State<LoginTextFiled> {
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               TextFormField(
+                focusNode: _emailFocusNode,
                 controller: _emailTextController,
                 textInputAction: TextInputAction.next,
                 keyboardType: TextInputType.emailAddress,
@@ -89,6 +90,7 @@ class _LoginTextFiledState extends State<LoginTextFiled> {
                 height: 16.h,
               ),
               TextFormField(
+                focusNode: _passwordFocusNode,
                 obscureText: obscureText,
                 controller: _passwordTextController,
                 textInputAction: TextInputAction.done,

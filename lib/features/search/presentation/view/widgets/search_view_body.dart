@@ -22,7 +22,7 @@ class SearchViewBody extends StatelessWidget {
           ),
           Expanded(
             child: DynamicHeightGridView(
-              itemCount: 220,
+              itemCount: 20,
               crossAxisCount: 2,
               builder: (context, index) {
                 return const ProductWidgets();

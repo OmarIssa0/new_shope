@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:iconly/iconly.dart';
+import 'package:new_shope/core/utils/widgets/alert_dialog.dart';
 
 import '../../../../../core/constant/my_validators.dart';
-import '../../../../../core/utils/animation_nav.dart';
 import '../../../../../core/utils/widgets/title_text.dart';
 
 class TextFiledForgotPasswordAndBottom extends StatefulWidget {
@@ -28,7 +28,9 @@ class _TextFiledForgotPasswordAndBottomState
 
   @override
   void dispose() {
-    _emailTextEditingController.dispose();
+    if (mounted) {
+      _emailTextEditingController.dispose();
+    }
     super.dispose();
   }
 
@@ -36,7 +38,17 @@ class _TextFiledForgotPasswordAndBottomState
     final isValid = _formKey.currentState!.validate();
     FocusScope.of(context).unfocus();
     if (isValid) {
-      Navigator.of(context).push(AnimationNav.createRouteHomeView());
+      AlertDialogMethods.showDialogForgotPassword(
+        context: context,
+        subtitle: 'Check the message box',
+        // isError: false,
+        titleBottom: 'Cancel',
+        lottileAnimation: 'assets/lottile/send_email.json',
+        function: () {
+          Navigator.of(context).pop();
+        },
+      );
+      // Navigator.of(context).pop(AnimationNav.createRouteHomeView());
     }
   }
 

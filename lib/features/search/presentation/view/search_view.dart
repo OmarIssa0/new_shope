@@ -8,17 +8,16 @@ class SearchView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        FocusScope.of(context).unfocus();
-      },
-      child: Scaffold(
-        appBar: AppBar(
-          automaticallyImplyLeading: false,
-          title: TitleTextAppCustom(label: 'Search', fontSize: 20.sp),
-        ),
-        body: const SearchViewBody(),
+    return Scaffold(
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        title: TitleTextAppCustom(label: 'Search', fontSize: 20.sp),
       ),
+      body: GestureDetector(
+          onTap: () {
+            FocusScope.of(context).unfocus();
+          },
+          child: const SearchViewBody()),
     );
   }
 }

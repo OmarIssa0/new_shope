@@ -27,7 +27,11 @@ class ForgotPasswordView extends StatelessWidget {
           fontSize: 20.sp,
         ),
       ),
-      body: const ForgotPasswordBodyView(),
+      body: GestureDetector(
+          onTap: () {
+            FocusScope.of(context).unfocus();
+          },
+          child: const ForgotPasswordBodyView()),
     );
   }
 }

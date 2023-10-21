@@ -1,14 +1,20 @@
 import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:go_router/go_router.dart';
 import 'package:iconly/iconly.dart';
-import 'package:new_shope/core/utils/app_router.dart';
 import 'package:new_shope/core/utils/widgets/title_text.dart';
+import 'package:new_shope/features/details/presentation/view/details_view.dart';
+import 'package:provider/provider.dart';
+
+import '../../manger/provider/product_provider.dart';
 
 class ProductWidgets extends StatefulWidget {
-  const ProductWidgets({super.key});
+  const ProductWidgets({
+    super.key,
+    required this.productId,
+  });
 
+  final String productId;
   @override
   State<ProductWidgets> createState() => _ProductWidgetsState();
 }
@@ -16,84 +22,101 @@ class ProductWidgets extends StatefulWidget {
 class _ProductWidgetsState extends State<ProductWidgets> {
   @override
   Widget build(BuildContext context) {
+    // product provider
+    final productProviderSearch = Provider.of<ProductProvider>(context);
+    final getCurrentProduct =
+        productProviderSearch.findByProductId(widget.productId);
+    // mediaQuery
     Size size = MediaQuery.of(context).size;
-    return Padding(
-      padding: const EdgeInsets.all(3.0),
-      child: InkWell(
-        borderRadius: BorderRadius.circular(14.r),
-        onTap: () async{
-          await GoRouter.of(context).push(AppRouter.kDetails);
-        },
-        child: Column(
-          children: [
-            ClipRRect(
+    // Ui
+    // اذا ال get null
+    return getCurrentProduct == null
+        ? const SizedBox.shrink()
+        : Padding(
+            padding: const EdgeInsets.all(3.0),
+            child: InkWell(
               borderRadius: BorderRadius.circular(14.r),
-              child: FancyShimmerImage(
-                imageUrl:
-                    'http://www.shadowsphotography.co/wp-content/uploads/2017/12/photography-01-800x400.jpg',
-                height: size.height * 0.22,
-              ),
-            ),
-            SizedBox(
-              height: 15.h,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Flexible(
-                  flex: 3,
-                  child: TitleTextAppCustom(
-                    label: 'Title' * 10,
-                    fontSize: 18.sp,
-                    maxLine: 2,
+              onTap: () async {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return const DetailsView();
+                    },
+                    settings:
+                        RouteSettings(arguments: getCurrentProduct.productId),
                   ),
-                ),
-                Flexible(
-                  child: IconButton(
-                    onPressed: () {},
-                    icon: const Icon(
-                      IconlyLight.heart,
-                    ),
-                  ),
-                )
-              ],
-            ),
-            Padding(
-              padding: const EdgeInsets.only(right: 8),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                );
+              },
+              child: Column(
                 children: [
-                  Flexible(
-                    child: TitleTextAppCustom(
-                      label: '166.5\$',
-                      fontSize: 18.sp,
-                      color: Colors.blue.shade900,
-                      // color: AppColor.kRedColorPrice,
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(14.r),
+                    child: FancyShimmerImage(
+                      imageUrl: getCurrentProduct.productImage,
+                      height: size.height * 0.22,
+                      boxFit: BoxFit.fitHeight,
                     ),
                   ),
-                  Flexible(
-                    child: Material(
-                      borderRadius: BorderRadius.circular(10.r),
-                      color: Colors.grey.shade200,
-                      child: InkWell(
-                        borderRadius: BorderRadius.circular(10.r),
-                        onTap: () {},
-                        child: const Padding(
-                          padding: EdgeInsets.all(8.0),
-                          child: Icon(
-                            IconlyLight.buy,
-                            size: 20,
-                          ),
+                  SizedBox(
+                    height: 15.h,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Flexible(
+                        flex: 3,
+                        child: TitleTextAppCustom(
+                          label: getCurrentProduct.productTitle,
+                          fontSize: 18.sp,
+                          maxLine: 2,
                         ),
                       ),
-                    ),
+                      Flexible(
+                        child: IconButton(
+                          onPressed: () {},
+                          icon: const Icon(
+                            IconlyLight.heart,
+                          ),
+                        ),
+                      )
+                    ],
                   ),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 8),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Flexible(
+                          child: TitleTextAppCustom(
+                            label: "${getCurrentProduct.productPrice}\$",
+                            fontSize: 18.sp,
+                            color: Colors.blue.shade900,
+                            // color: AppColor.kRedColorPrice,
+                          ),
+                        ),
+                        Flexible(
+                          child: Material(
+                            borderRadius: BorderRadius.circular(10.r),
+                            color: Colors.grey.shade200,
+                            child: InkWell(
+                              borderRadius: BorderRadius.circular(10.r),
+                              onTap: () {},
+                              child: const Padding(
+                                padding: EdgeInsets.all(8.0),
+                                child: Icon(
+                                  IconlyLight.buy,
+                                  size: 20,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  )
                 ],
               ),
-            )
-          ],
-        ),
-      ),
-    );
+            ),
+          );
   }
 }

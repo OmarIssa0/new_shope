@@ -35,7 +35,9 @@ class WishlistViewBody extends StatelessWidget {
                     itemCount: 100,
                     crossAxisCount: 2,
                     builder: (context, index) {
-                      return const ProductWidgets();
+                      return const ProductWidgets(
+                        productId: "",
+                      );
                     },
                   ),
                 ),

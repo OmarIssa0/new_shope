@@ -14,10 +14,11 @@ class SearchView extends StatelessWidget {
         title: TitleTextAppCustom(label: 'Search', fontSize: 20.sp),
       ),
       body: GestureDetector(
-          onTap: () {
-            FocusScope.of(context).unfocus();
-          },
-          child: const SearchViewBody()),
+        onTap: () {
+          FocusScope.of(context).unfocus();
+        },
+        child: const SearchViewBody(),
+      ),
     );
   }
 }

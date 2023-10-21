@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:new_shope/core/utils/widgets/title_text.dart';
 import 'package:new_shope/features/details/presentation/view/widgets/title_and_price_product_detalis.dart';
+import 'package:provider/provider.dart';
 
+import '../../../../search/presentation/manger/provider/product_provider.dart';
 import 'image_product_details_view.dart';
 
 class DetailsViewBody extends StatelessWidget {
@@ -10,6 +12,16 @@ class DetailsViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // product provider
+    final productProviderDetails =
+        Provider.of<ProductProvider>(context, listen: false);
+
+    // Navigator
+    final productId = ModalRoute.of(context)!.settings.arguments;
+    final getCurrentProduct =
+        productProviderDetails.findByProductId(productId.toString());
+
+    // Ui
     return SingleChildScrollView(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -30,7 +42,8 @@ class DetailsViewBody extends StatelessWidget {
               children: [
                 TitleTextAppCustom(
                     label: 'Description Product', fontSize: 18.sp),
-                TitleTextAppCustom(label: 'In Phone', fontSize: 14.sp),
+                TitleTextAppCustom(
+                    label: getCurrentProduct!.productCategory, fontSize: 14.sp),
               ],
             ),
           ),
@@ -39,7 +52,7 @@ class DetailsViewBody extends StatelessWidget {
             child: Column(
               children: [
                 Text(
-                  'The speaker unit contains a diaphragm that is precision-grown from NAC Audio bio-cellulose, making it stiffer, lighter and stronger than regular PET speaker units, and allowing the sound-producing diaphragm to vibrate without the levels of distortion found in other speakers. The speaker unit contains a diaphragm that is precision-grown from NAC Audio bio-cellulose, making it stiffer, lighter and stronger than regular PET speaker units, and allowing the sound-producing diaphragm to vibrate without the levels of distortion found in other speakers. The speaker unit contains a diaphragm that is precision-grown from NAC Audio bio-cellulose, making it stiffer, lighter and stronger than regular PET speaker units, and allowing the sound-producing diaphragm to vibrate without the levels of distortion found in other speakers. ',
+                  getCurrentProduct.productDescription,
                   style: TextStyle(
                     fontSize: 14.sp,
                   ),

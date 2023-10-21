@@ -50,6 +50,7 @@ class AppRouter {
       GoRoute(
         path: kDetails,
         builder: (context, state) => const DetailsView(),
+        
       ),
       GoRoute(
         path: kWishlist,

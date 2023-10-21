@@ -17,17 +17,17 @@ class CategoriesList {
     CategoryModel(
       id: MangerImage.kPcCategories,
       image: MangerImage.kPcCategories,
-      name: 'Pc',
+      name: 'Laptop',
     ),
     CategoryModel(
       id: MangerImage.kFashionCategories,
       image: MangerImage.kFashionCategories,
-      name: 'Fashion',
+      name: 'Clothes',
     ),
     CategoryModel(
       id: MangerImage.kElectronCategories,
       image: MangerImage.kElectronCategories,
-      name: 'Electron',
+      name: 'Electronics',
     ),
     CategoryModel(
       id: MangerImage.kCosmeticCategories,
@@ -37,12 +37,12 @@ class CategoriesList {
     CategoryModel(
       id: MangerImage.kBookCategories,
       image: MangerImage.kBookCategories,
-      name: 'Book',
+      name: 'Books',
     ),
     CategoryModel(
       id: MangerImage.kMobilesCategories,
       image: MangerImage.kMobilesCategories,
-      name: 'Mobile',
+      name: 'phones',
     ),
   ];
 }

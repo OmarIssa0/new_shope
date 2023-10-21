@@ -19,6 +19,16 @@ class ProductProvider with ChangeNotifier {
     return _products.firstWhere((element) => element.productId == productId);
   }
 
+  // Navigator category
+  List<ProductModel> findByCategory({required String categoryName}) {
+    List<ProductModel> categoryList = _products
+        .where((element) => element.productCategory
+            .toLowerCase()
+            .contains(categoryName.toLowerCase()))
+        .toList();
+    return categoryList;
+  }
+
   final List<ProductModel> _products = [
     // Phones
     ProductModel(

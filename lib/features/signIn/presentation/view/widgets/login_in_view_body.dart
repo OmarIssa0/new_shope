@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:go_router/go_router.dart';
+
 import 'package:ionicons/ionicons.dart';
 import 'package:new_shope/core/utils/animation_nav.dart';
 import 'package:new_shope/core/utils/widgets/title_text.dart';
 import 'package:new_shope/features/signIn/presentation/view/widgets/text_filed_login.dart';
 import 'package:new_shope/features/signIn/presentation/view/widgets/title_login_view.dart';
-
-import '../../../../../core/utils/app_router.dart';
+import 'package:new_shope/root_view.dart';
 
 class LoginInViewBody extends StatelessWidget {
   const LoginInViewBody({super.key});
@@ -23,7 +22,8 @@ class LoginInViewBody extends StatelessWidget {
             padding: EdgeInsets.only(top: 32.r, right: 32.r),
             child: GestureDetector(
               onTap: () async {
-                await GoRouter.of(context).pushReplacement(AppRouter.kRoot);
+                await Navigator.of(context)
+                    .pushReplacementNamed(RootView.kRoot);
               },
               child: TitleTextAppCustom(
                 label: 'Skip',

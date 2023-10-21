@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:go_router/go_router.dart';
+
 import 'package:iconly/iconly.dart';
 import 'package:new_shope/core/utils/widgets/alert_dialog.dart';
 import 'package:new_shope/core/utils/widgets/title_text.dart';
 import 'package:new_shope/features/profile/presentation/view/widgets/custom_list_tile.dart';
 import 'package:new_shope/features/profile/presentation/view/widgets/general_list.dart';
 import 'package:new_shope/features/profile/presentation/view/widgets/top_profile_view.dart';
+import 'package:new_shope/features/signIn/presentation/view/login_in_view.dart';
 
 class ProfileViewBody extends StatelessWidget {
   const ProfileViewBody({super.key});
@@ -41,8 +42,9 @@ class ProfileViewBody extends StatelessWidget {
                         context: context,
                         titleBottom: 'Logout',
                         lottileAnimation: 'assets/lottile/logout.json',
-                        function: () {
-                          GoRouter.of(context).pushReplacement('/');
+                        function: () async {
+                          Navigator.of(context).pushNamedAndRemoveUntil(
+                              LoginView.kLogin, (route) => false);
                         },
                         isError: false,
                       );

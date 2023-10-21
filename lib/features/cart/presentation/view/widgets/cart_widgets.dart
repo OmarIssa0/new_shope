@@ -1,11 +1,10 @@
 import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:go_router/go_router.dart';
 import 'package:iconly/iconly.dart';
-import 'package:new_shope/core/utils/app_router.dart';
 import 'package:new_shope/core/utils/widgets/title_text.dart';
 import 'package:new_shope/features/cart/presentation/view/widgets/plus_and_minus.dart';
+import 'package:new_shope/features/details/presentation/view/details_view.dart';
 
 class CartWidgets extends StatelessWidget {
   const CartWidgets({super.key});
@@ -15,7 +14,7 @@ class CartWidgets extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
     return GestureDetector(
       onTap: () {
-        GoRouter.of(context).push(AppRouter.kDetails);
+        Navigator.of(context).pushNamed(DetailsView.kDetails);
       },
       child: FittedBox(
         child: IntrinsicWidth(

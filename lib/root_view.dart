@@ -10,6 +10,8 @@ import 'package:new_shope/features/search/presentation/view/search_view.dart';
 class RootView extends StatefulWidget {
   const RootView({super.key});
 
+  static String kRoot = '/kRoot';
+
   @override
   State<RootView> createState() => _RootViewState();
 }

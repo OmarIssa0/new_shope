@@ -28,6 +28,7 @@ class _ProductWidgetsState extends State<ProductWidgets> {
         productProviderSearch.findByProductId(widget.productId);
     // mediaQuery
     Size size = MediaQuery.of(context).size;
+
     // Ui
     // اذا ال get null
     return getCurrentProduct == null
@@ -37,15 +38,8 @@ class _ProductWidgetsState extends State<ProductWidgets> {
             child: InkWell(
               borderRadius: BorderRadius.circular(14.r),
               onTap: () async {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return const DetailsView();
-                    },
-                    settings:
-                        RouteSettings(arguments: getCurrentProduct.productId),
-                  ),
-                );
+                Navigator.of(context).pushNamed(DetailsView.kDetails,
+                    arguments: getCurrentProduct.productId);
               },
               child: Column(
                 children: [

@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:go_router/go_router.dart';
+
 import 'package:iconly/iconly.dart';
 import 'package:new_shope/core/utils/widgets/title_text.dart';
 import 'package:new_shope/features/sgin_up/presentation/view/widgets/signup__body_view.dart';
 
 class SignUpView extends StatelessWidget {
+  static const kSignUp = '/kSignUpView';
   const SignUpView({super.key});
 
   @override
@@ -15,8 +16,8 @@ class SignUpView extends StatelessWidget {
         centerTitle: true,
         automaticallyImplyLeading: false,
         leading: IconButton(
-          onPressed: () {
-            GoRouter.of(context).pop();
+          onPressed: () async {
+            Navigator.of(context).pop();
           },
           icon: const Icon(
             IconlyLight.arrow_left_2,

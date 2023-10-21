@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:go_router/go_router.dart';
+
 import 'package:lottie/lottie.dart';
 import 'package:new_shope/core/utils/widgets/title_text.dart';
 
@@ -39,7 +39,7 @@ class AlertDialogMethods {
                     TextButton(
                       onPressed: () {
                         function();
-                        GoRouter.of(context).pop();
+                        // Navigator.of(context).pop();
                       },
                       child: TitleTextAppCustom(
                         label: titleBottom,
@@ -54,7 +54,7 @@ class AlertDialogMethods {
                       visible: !isError,
                       child: TextButton(
                         onPressed: () {
-                          GoRouter.of(context).pop();
+                          Navigator.of(context).pop();
                         },
                         child: TitleTextAppCustom(
                           label: 'Cancel',
@@ -108,7 +108,7 @@ class AlertDialogMethods {
                     TextButton(
                       onPressed: () {
                         function();
-                        GoRouter.of(context).pop();
+                        Navigator.of(context).pop();
                       },
                       child: TitleTextAppCustom(
                         label: titleBottom,
@@ -123,7 +123,7 @@ class AlertDialogMethods {
                     //   visible: !isError,
                     //   child: TextButton(
                     //     onPressed: () {
-                    //       GoRouter.of(context).pop();
+                    //
                     //     },
                     //     child: TitleTextAppCustom(
                     //       label: 'Cancel',

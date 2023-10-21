@@ -4,6 +4,7 @@ import 'package:new_shope/core/utils/widgets/title_text.dart';
 import 'package:new_shope/features/profile/presentation/view/widgets/profile_view_body.dart';
 
 class ProfileView extends StatelessWidget {
+  static const kProfile = '/kProfileView';
   const ProfileView({super.key});
 
   @override

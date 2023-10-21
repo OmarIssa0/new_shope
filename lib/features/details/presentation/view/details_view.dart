@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:go_router/go_router.dart';
+
 import 'package:iconly/iconly.dart';
 import 'package:new_shope/core/utils/widgets/title_text.dart';
 import 'package:new_shope/features/details/presentation/view/widgets/bottom_nav_bar_details_view.dart';
 import 'package:new_shope/features/details/presentation/view/widgets/details_view_body.dart';
 
 class DetailsView extends StatelessWidget {
+  static const kDetails = '/kDetailsView';
   const DetailsView({super.key});
 
   @override
@@ -23,7 +24,7 @@ class DetailsView extends StatelessWidget {
         automaticallyImplyLeading: false,
         leading: IconButton(
           onPressed: () {
-            GoRouter.of(context).pop();
+            Navigator.of(context).pop();
           },
           icon: const Icon(
             IconlyLight.arrow_left_2,

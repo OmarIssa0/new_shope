@@ -5,6 +5,7 @@ import 'package:new_shope/core/utils/widgets/title_text.dart';
 import 'package:new_shope/features/forgot_password/presentation/view/widgets/forgot_password_body_view.dart';
 
 class ForgotPasswordView extends StatelessWidget {
+  static const kForgotPassword = '/kForgotPasswordView';
   const ForgotPasswordView({super.key});
 
   @override
@@ -28,10 +29,11 @@ class ForgotPasswordView extends StatelessWidget {
         ),
       ),
       body: GestureDetector(
-          onTap: () {
-            FocusScope.of(context).unfocus();
-          },
-          child: const ForgotPasswordBodyView()),
+        onTap: () {
+          FocusScope.of(context).unfocus();
+        },
+        child: const ForgotPasswordBodyView(),
+      ),
     );
   }
 }

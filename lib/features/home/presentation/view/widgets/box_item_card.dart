@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:go_router/go_router.dart';
+
 import 'package:new_shope/features/home/presentation/view/widgets/item_card.dart';
 
 import '../../../../../core/utils/app_router.dart';
+import '../../../../details/presentation/view/details_view.dart';
 
 class BoxItemCard extends StatelessWidget {
   const BoxItemCard({super.key});
@@ -12,7 +13,7 @@ class BoxItemCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () async {
-        await GoRouter.of(context).push(AppRouter.kDetails);
+        await Navigator.of(context).pushNamed(DetailsView.kDetails);
       },
       child: Container(
         margin: EdgeInsets.symmetric(horizontal: 5.r, vertical: 7.5.r),

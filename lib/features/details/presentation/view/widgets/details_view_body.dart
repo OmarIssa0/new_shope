@@ -17,9 +17,8 @@ class DetailsViewBody extends StatelessWidget {
         Provider.of<ProductProvider>(context, listen: false);
 
     // Navigator
-    final productId = ModalRoute.of(context)!.settings.arguments;
-    final getCurrentProduct =
-        productProviderDetails.findByProductId(productId.toString());
+    String productId = ModalRoute.of(context)!.settings.arguments as String;
+    final getCurrentProduct = productProviderDetails.findByProductId(productId);
 
     // Ui
     return SingleChildScrollView(

@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:new_shope/features/home/presentation/view/widgets/category_rounded_widgets.dart';
 
 import '../../../../../core/utils/widgets/title_text.dart';
-import '../../view_model/list_model_category.dart';
+import '../../view_model/model/list_model_category.dart';
 
 class GridViewCategory extends StatelessWidget {
   const GridViewCategory({super.key});
@@ -34,7 +34,7 @@ class GridViewCategory extends StatelessWidget {
                 (index) {
                   return CategoriesRoundedWidgets(
                     image: CategoriesList.categoryList[index].image,
-                    title: CategoriesList.categoryList[index].name,
+                    name: CategoriesList.categoryList[index].name,
                   );
                 },
               ),

@@ -4,6 +4,7 @@ import 'package:new_shope/core/utils/widgets/shimmer_color_text.dart';
 import 'package:new_shope/features/home/presentation/view/widgets/home_view_body.dart';
 
 class HomeView extends StatelessWidget {
+  static const kHome = '/kHomeView';
   const HomeView({super.key});
 
   @override

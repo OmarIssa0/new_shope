@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:go_router/go_router.dart';
+
 import 'package:iconly/iconly.dart';
 import 'package:new_shope/core/utils/widgets/title_text.dart';
 import 'package:new_shope/features/wishlist/presentation/view/widgets/wishlist_view_body.dart';
 
 class WishlistView extends StatelessWidget {
+  static const kWishlist = '/kWishlistView';
   const WishlistView({super.key});
 
   @override
@@ -16,7 +17,7 @@ class WishlistView extends StatelessWidget {
         automaticallyImplyLeading: false,
         leading: IconButton(
           onPressed: () {
-            GoRouter.of(context).pop();
+            Navigator.of(context).pop();
           },
           icon: const Icon(
             IconlyLight.arrow_left_2,

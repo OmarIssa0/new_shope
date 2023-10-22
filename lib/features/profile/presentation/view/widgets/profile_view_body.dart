@@ -43,7 +43,7 @@ class ProfileViewBody extends StatelessWidget {
                         titleBottom: 'Logout',
                         lottileAnimation: 'assets/lottile/logout.json',
                         function: () async {
-                          Navigator.of(context).pushNamedAndRemoveUntil(
+                          await Navigator.of(context).pushNamedAndRemoveUntil(
                               LoginView.kLogin, (route) => false);
                         },
                         isError: false,

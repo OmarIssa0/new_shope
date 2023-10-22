@@ -28,7 +28,7 @@ class TitleAndPriceDetailsProduct extends StatelessWidget {
           TitleTextAppCustom(
             label: getCurrentProduct!.productTitle,
             fontSize: 18.sp,
-            maxLine: 3,
+            maxLine: 30,
           ),
           SizedBox(
             height: 5.h,

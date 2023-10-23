@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:new_shope/features/forgot_password/presentation/view/forgot_password_view.dart';
-import 'package:new_shope/features/sgin_up/presentation/view/signup_view.dart';
+import 'package:new_shope/features/sign_up/presentation/view/signup_view.dart';
 import 'package:new_shope/root_view.dart';
 
 class AnimationNav {

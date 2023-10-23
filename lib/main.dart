@@ -10,7 +10,7 @@ import 'package:new_shope/features/home/presentation/view/home_view.dart';
 import 'package:new_shope/features/profile/presentation/view/profile_view.dart';
 import 'package:new_shope/features/search/presentation/manger/provider/product_provider.dart';
 import 'package:new_shope/features/search/presentation/view/search_view.dart';
-import 'package:new_shope/features/sgin_up/presentation/view/signup_view.dart';
+import 'package:new_shope/features/sign_up/presentation/view/signup_view.dart';
 import 'package:new_shope/features/signIn/presentation/view/login_in_view.dart';
 import 'package:new_shope/features/wishlist/presentation/view/wishlist_view.dart';
 import 'package:new_shope/root_view.dart';
@@ -47,7 +47,7 @@ class MyApp extends StatelessWidget {
             ),
             // child: MaterialApp.router(
             child: MaterialApp(
-              initialRoute: RootView.kRoot,
+              initialRoute: LoginView.kLogin,
               routes: {
                 LoginView.kLogin: (context) => const LoginView(),
                 RootView.kRoot: (context) => const RootView(),

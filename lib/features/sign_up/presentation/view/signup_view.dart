@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:iconly/iconly.dart';
 import 'package:new_shope/core/utils/widgets/title_text.dart';
-import 'package:new_shope/features/sgin_up/presentation/view/widgets/signup__body_view.dart';
+import 'package:new_shope/features/sign_up/presentation/view/widgets/signup__body_view.dart';
 
 class SignUpView extends StatelessWidget {
   static const kSignUp = '/kSignUpView';

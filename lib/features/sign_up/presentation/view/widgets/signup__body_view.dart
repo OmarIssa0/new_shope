@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:new_shope/core/utils/widgets/title_text.dart';
-import 'package:new_shope/features/sgin_up/presentation/view/widgets/text_filed_signup.dart';
+import 'package:new_shope/features/sign_up/presentation/view/widgets/text_filed_signup.dart';
 
 class SignUpBodyView extends StatelessWidget {
   const SignUpBodyView({super.key});

@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:iconly/iconly.dart';
 import 'package:new_shope/core/utils/widgets/title_text.dart';
+import 'package:new_shope/features/search/presentation/manger/model/product.model.dart';
+import 'package:provider/provider.dart';
 
 class ItemCard extends StatelessWidget {
   const ItemCard({
@@ -11,6 +13,7 @@ class ItemCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final productModel = Provider.of<ProductModel>(context);
     return SizedBox(
       // height: 420.h,s
       width: 156.w,
@@ -27,15 +30,15 @@ class ItemCard extends StatelessWidget {
               // width: 123.w,
               width: double.infinity,
               child: FancyShimmerImage(
-                imageUrl:
-                    'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/MT4Q3?wid=1000&hei=1000&fmt=jpeg&qlt=95&.v=1693594240142',
+                imageUrl: productModel.productImage,
+                // 'http/s://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/MT4Q3?wid=1000&hei=1000&fmt=jpeg&qlt=95&.v=1693594240142',
                 boxFit: BoxFit.cover,
               ),
             ),
             SizedBox(height: 5.h),
             Flexible(
               child: TitleTextAppCustom(
-                label: 'Test Title',
+                label: productModel.productTitle,
                 fontSize: 14.sp,
                 fontWeight: FontWeight.w500,
               ),
@@ -43,7 +46,7 @@ class ItemCard extends StatelessWidget {
             SizedBox(height: 5.h),
             Flexible(
               child: TitleTextAppCustom(
-                label: '1500\$',
+                label: '${productModel.productPrice}\$',
                 fontSize: 12.sp,
                 fontWeight: FontWeight.w700,
                 color: Colors.blue.shade900,

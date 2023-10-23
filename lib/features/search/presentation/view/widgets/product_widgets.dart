@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:iconly/iconly.dart';
 import 'package:new_shope/core/utils/widgets/title_text.dart';
+import 'package:new_shope/features/cart/presentation/manger/provider/cart_provider.dart';
 import 'package:new_shope/features/details/presentation/view/details_view.dart';
 import 'package:provider/provider.dart';
 
@@ -26,6 +27,10 @@ class _ProductWidgetsState extends State<ProductWidgets> {
     final productProviderSearch = Provider.of<ProductProvider>(context);
     final getCurrentProduct =
         productProviderSearch.findByProductId(widget.productId);
+
+    // cart provider => add item cart
+    final cartProvider = Provider.of<CartProvider>(context);
+
     // mediaQuery
     Size size = MediaQuery.of(context).size;
 
@@ -94,11 +99,22 @@ class _ProductWidgetsState extends State<ProductWidgets> {
                             color: Colors.grey.shade200,
                             child: InkWell(
                               borderRadius: BorderRadius.circular(10.r),
-                              onTap: () {},
-                              child: const Padding(
-                                padding: EdgeInsets.all(8.0),
+                              onTap: () {
+                                if (cartProvider.isProductInCart(
+                                    productId: getCurrentProduct.productId)) {
+                                  return;
+                                }
+                                cartProvider.addProductToCart(
+                                    productID: getCurrentProduct.productId);
+                              },
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
                                 child: Icon(
-                                  IconlyLight.buy,
+                                  cartProvider.isProductInCart(
+                                          productId:
+                                              getCurrentProduct.productId)
+                                      ? Icons.check
+                                      : IconlyLight.buy,
                                   size: 20,
                                 ),
                               ),

@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:new_shope/core/utils/widgets/alert_dialog.dart';
 import 'package:new_shope/core/utils/widgets/empty_widgets.dart';
 import 'package:new_shope/core/utils/widgets/title_text.dart';
-import 'package:new_shope/features/cart/presentation/view/widgets/cart_widgets.dart';
 import 'package:new_shope/features/home/presentation/view/home_view.dart';
+import 'package:new_shope/features/search/presentation/manger/provider/product_provider.dart';
+import 'package:provider/provider.dart';
+
+import '../../manger/provider/cart_provider.dart';
+import 'cart_widgets.dart';
 
 class CartViewBody extends StatelessWidget {
   const CartViewBody({super.key});
@@ -12,7 +17,9 @@ class CartViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return isEmpty
+    final cartProvider = Provider.of<CartProvider>(context);
+    final productProvider = Provider.of<ProductProvider>(context);
+    return cartProvider.getCartItem.isEmpty
         ? Column(
             children: [
               EmptyWidgets(
@@ -29,12 +36,23 @@ class CartViewBody extends StatelessWidget {
             appBar: AppBar(
               automaticallyImplyLeading: false,
               title: TitleTextAppCustom(
-                label: 'Cart (5)',
+                label: 'Cart (${cartProvider.getCartItem.length})',
                 fontSize: 20.sp,
               ),
               actions: [
                 IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    AlertDialogMethods.showDialogWaring(
+                      context: context,
+                      titleBottom: 'Delete My Cart',
+                      lottileAnimation: 'assets/lottile/delete_cart.json',
+                      function: () {
+                        cartProvider.clearLocal();
+                        Navigator.of(context).pop();
+                      },
+                      isError: false,
+                    );
+                  },
                   icon: Icon(
                     Icons.delete_forever_outlined,
                     color: Colors.red.shade400,
@@ -57,13 +75,16 @@ class CartViewBody extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             TitleTextAppCustom(
-                                label: 'Total (6 products/6 item)',
-                                fontSize: 14.sp),
+                              label:
+                                  'Total (${cartProvider.getCartItem.length} products / ${cartProvider.getQty()} Item)',
+                              fontSize: 14.sp,
+                            ),
                             SizedBox(
                               height: 4.h,
                             ),
                             TitleTextAppCustom(
-                              label: '16.99\$',
+                              label:
+                                  '${cartProvider.getTotal(productProvider: productProvider).toStringAsFixed(2)}\$',
                               fontSize: 14.sp,
                               color: Colors.blue.shade900,
                             ),
@@ -91,9 +112,15 @@ class CartViewBody extends StatelessWidget {
                 ),
                 Expanded(
                   child: ListView.builder(
-                    itemCount: 15,
+                    itemCount: cartProvider.getCartItem.length,
                     itemBuilder: (context, index) {
-                      return const CartWidgets();
+                      return ChangeNotifierProvider.value(
+                        value: cartProvider.getCartItem.values
+                            .toList()
+                            .reversed
+                            .toList()[index],
+                        child: const CartWidgets(),
+                      );
                     },
                   ),
                 ),

@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:new_shope/core/utils/widgets/title_text.dart';
-import 'package:new_shope/features/search/presentation/manger/provider/product_provider.dart';
 import 'package:new_shope/features/search/presentation/view/widgets/search_view_body.dart';
-import 'package:provider/provider.dart';
-
-import '../manger/model/product.model.dart';
 
 class SearchView extends StatelessWidget {
   static const kSearch = '/kSearchView';
@@ -15,11 +11,11 @@ class SearchView extends StatelessWidget {
   Widget build(BuildContext context) {
     // send category Navigator
     String? categoryNav = ModalRoute.of(context)!.settings.arguments as String?;
-    final productProvider = Provider.of<ProductProvider>(context);
+    // final productProvider = Provider.of<ProductProvider>(context);
 
-    final List<ProductModel> productList = categoryNav == null
-        ? productProvider.getProducts
-        : productProvider.findByCategory(categoryName: categoryNav);
+    // final List<ProductModel> productList = categoryNav == null
+    //     ? productProvider.getProducts
+    //     : productProvider.findByCategory(categoryName: categoryNav);
 
     return Scaffold(
       appBar: AppBar(

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:new_shope/core/utils/theme_data.dart';
+import 'package:new_shope/features/cart/presentation/manger/provider/cart_provider.dart';
 import 'package:new_shope/features/cart/presentation/view/cart_view.dart';
 import 'package:new_shope/features/details/presentation/view/details_view.dart';
 import 'package:new_shope/features/forgot_password/presentation/view/forgot_password_view.dart';
@@ -29,7 +30,10 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(
-          create: (_) => ProductProvider(),
+          create: (context) => ProductProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => CartProvider(),
         ),
       ],
       child: ScreenUtilInit(
@@ -43,7 +47,7 @@ class MyApp extends StatelessWidget {
             ),
             // child: MaterialApp.router(
             child: MaterialApp(
-              initialRoute: LoginView.kLogin,
+              initialRoute: RootView.kRoot,
               routes: {
                 LoginView.kLogin: (context) => const LoginView(),
                 RootView.kRoot: (context) => const RootView(),

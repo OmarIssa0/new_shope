@@ -2,12 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:iconly/iconly.dart';
 import 'package:new_shope/core/utils/widgets/title_text.dart';
+import 'package:provider/provider.dart';
+
+import '../../../../cart/presentation/manger/provider/cart_provider.dart';
+import '../../../../search/presentation/manger/provider/product_provider.dart';
 
 class BottomNavBarDetailsView extends StatelessWidget {
   const BottomNavBarDetailsView({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final productProvider =
+        Provider.of<ProductProvider>(context, listen: false);
+    final productId = ModalRoute.of(context)!.settings.arguments as String;
+    final getCurrProduct = productProvider.findByProductId(productId);
+    final cartProvider = Provider.of<CartProvider>(context);
     return SafeArea(
       bottom: true,
       child: Padding(
@@ -21,12 +30,38 @@ class BottomNavBarDetailsView extends StatelessWidget {
                 ),
                 height: 50.h,
                 color: Colors.black54,
-                onPressed: () {},
-                child: TitleTextAppCustom(
-                  label: 'Add To Cart',
-                  fontSize: 18.sp,
-                  color: Colors.white,
-                ),
+                onPressed: () {
+                  if (cartProvider.isProductInCart(
+                      productId: getCurrProduct.productId)) {
+                    return;
+                  }
+                  cartProvider.addProductToCart(
+                      productID: getCurrProduct.productId);
+                },
+                child: cartProvider.isProductInCart(
+                        productId: getCurrProduct!.productId)
+                    ? Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          TitleTextAppCustom(
+                            label: 'In Cart',
+                            fontSize: 18.sp,
+                            color: Colors.white,
+                          ),
+                          SizedBox(
+                            width: 5.w,
+                          ),
+                          const Icon(
+                            Icons.check,
+                            color: Colors.white,
+                          )
+                        ],
+                      )
+                    : TitleTextAppCustom(
+                        label: 'Add To Cart',
+                        fontSize: 18.sp,
+                        color: Colors.white,
+                      ),
               ),
             ),
             SizedBox(

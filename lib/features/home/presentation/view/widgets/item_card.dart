@@ -1,7 +1,6 @@
 import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:iconly/iconly.dart';
 import 'package:new_shope/core/utils/widgets/title_text.dart';
 import 'package:new_shope/features/search/presentation/manger/model/product.model.dart';
 import 'package:provider/provider.dart';
@@ -54,27 +53,27 @@ class ItemCard extends StatelessWidget {
               ),
             ),
             SizedBox(height: 5.h),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Flexible(
-                  child: IconButton(
-                    onPressed: () {},
-                    icon: const Icon(
-                      IconlyLight.buy,
-                    ),
-                  ),
-                ),
-                Flexible(
-                  child: IconButton(
-                    onPressed: () {},
-                    icon: const Icon(
-                      IconlyLight.heart,
-                    ),
-                  ),
-                )
-              ],
-            ),
+            // Row(
+            //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            //   children: [
+            //     Flexible(
+            //       child: IconButton(
+            //         onPressed: () {},
+            //         icon: const Icon(
+            //           IconlyLight.buy,
+            //         ),
+            //       ),
+            //     ),
+            //     Flexible(
+            //       child: IconButton(
+            //         onPressed: () {},
+            //         icon: const Icon(
+            //           IconlyLight.heart,
+            //         ),
+            //       ),
+            //     )
+            //   ],
+            // ),
           ],
         ),
       ),

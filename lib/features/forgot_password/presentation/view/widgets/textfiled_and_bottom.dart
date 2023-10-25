@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:iconly/iconly.dart';
+import 'package:new_shope/core/utils/app_image.dart';
 import 'package:new_shope/core/utils/widgets/alert_dialog.dart';
 
 import '../../../../../core/constant/my_validators.dart';
@@ -43,7 +44,7 @@ class _TextFiledForgotPasswordAndBottomState
         subtitle: 'Check the message box',
         // isError: false,
         titleBottom: 'Cancel',
-        lottileAnimation: 'assets/lottile/send_email.json',
+        lottileAnimation: MangerImage.kSendEmail,
         function: () {
           Navigator.of(context).pop();
         },

@@ -13,10 +13,16 @@ import 'package:new_shope/features/search/presentation/view/search_view.dart';
 import 'package:new_shope/features/sign_up/presentation/view/signup_view.dart';
 import 'package:new_shope/features/signIn/presentation/view/login_in_view.dart';
 import 'package:new_shope/features/wishlist/presentation/view/wishlist_view.dart';
+import 'package:new_shope/features/wishlist/presentation/view_model/provider/wishlist_provider.dart';
 import 'package:new_shope/root_view.dart';
 import 'package:provider/provider.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    // DeviceOrientation.portraitDown,
+  ]);
   runApp(
     const MyApp(),
   );
@@ -34,6 +40,9 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider(
           create: (context) => CartProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => WishlistProvider(),
         ),
       ],
       child: ScreenUtilInit(

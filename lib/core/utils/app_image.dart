@@ -12,4 +12,10 @@ class MangerImage {
   static const kPcCategories = 'assets/images/categories/pc.png';
   static const kShoesCategories = 'assets/images/categories/shoes.png';
   static const kWatchCategories = 'assets/images/categories/watch.png';
+
+  // lottile
+  static const kDeleteCartAndWishlist = "assets/lottile/delete_cart.json";
+  static const kForgotPassword = "assets/lottile/forgot_password.json";
+  static const kLogout = "assets/lottile/logout.json";
+  static const kSendEmail = "assets/lottile/send_email.json";
 }

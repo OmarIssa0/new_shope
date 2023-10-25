@@ -4,6 +4,8 @@ import 'package:lottie/lottie.dart';
 import 'package:new_shope/core/utils/widgets/title_text.dart';
 import 'package:new_shope/features/forgot_password/presentation/view/widgets/textfiled_and_bottom.dart';
 
+import '../../../../../core/utils/app_image.dart';
+
 class ForgotPasswordBodyView extends StatelessWidget {
   const ForgotPasswordBodyView({super.key});
 
@@ -18,7 +20,7 @@ class ForgotPasswordBodyView extends StatelessWidget {
         child: Column(
           children: [
             Lottie.asset(
-              "assets/lottile/forgot_password.json",
+              MangerImage.kForgotPassword,
               height: MediaQuery.of(context).size.height * .25,
             ),
             SizedBox(

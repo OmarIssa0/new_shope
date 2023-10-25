@@ -25,6 +25,7 @@ class _PlusAndMinusCountState extends State<PlusAndMinusCount> {
     final cartProvider = Provider.of<CartProvider>(context);
     //
     final productProviderSearch = Provider.of<ProductProvider>(context);
+    // ignore: unused_local_variable
     final getCurrentProduct = productProviderSearch
         .findByProductId(widget.cartModel.quantity.toString());
     return Container(

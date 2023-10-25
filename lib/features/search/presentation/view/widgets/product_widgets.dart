@@ -7,6 +7,7 @@ import 'package:new_shope/features/cart/presentation/manger/provider/cart_provid
 import 'package:new_shope/features/details/presentation/view/details_view.dart';
 import 'package:provider/provider.dart';
 
+import '../../../../wishlist/presentation/view_model/provider/wishlist_provider.dart';
 import '../../manger/provider/product_provider.dart';
 
 class ProductWidgets extends StatefulWidget {
@@ -30,6 +31,9 @@ class _ProductWidgetsState extends State<ProductWidgets> {
 
     // cart provider => add item cart
     final cartProvider = Provider.of<CartProvider>(context);
+
+    // add wishlist
+    final wishlistProvider = Provider.of<WishlistProvider>(context);
 
     // mediaQuery
     Size size = MediaQuery.of(context).size;
@@ -72,12 +76,22 @@ class _ProductWidgetsState extends State<ProductWidgets> {
                       ),
                       Flexible(
                         child: IconButton(
-                          onPressed: () {},
-                          icon: const Icon(
-                            IconlyLight.heart,
-                          ),
+                          onPressed: () {
+                            wishlistProvider.addProductToCartAndRemoveWishlist(
+                                productID: widget.productId);
+                          },
+                          icon: wishlistProvider.isProductInWishlist(
+                                  productId: widget.productId)
+                              ? const Icon(
+                                  IconlyBold.heart,
+                                  color: Colors.red,
+                                )
+                              : const Icon(
+                                  IconlyLight.heart,
+                                  color: Color.fromARGB(255, 0, 0, 0),
+                                ),
                         ),
-                      )
+                      ),
                     ],
                   ),
                   Padding(

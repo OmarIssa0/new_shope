@@ -9,6 +9,7 @@ import 'package:new_shope/features/details/presentation/view/details_view.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../search/presentation/manger/provider/product_provider.dart';
+import '../../../../wishlist/presentation/view_model/provider/wishlist_provider.dart';
 import '../../manger/provider/cart_provider.dart';
 
 class CartWidgets extends StatelessWidget {
@@ -23,6 +24,8 @@ class CartWidgets extends StatelessWidget {
     final productProviderCart = Provider.of<ProductProvider>(context);
     final getCurrentProduct =
         productProviderCart.findByProductId(cartModelProvider.productID);
+    // add wishlist
+    final wishlistProvider = Provider.of<WishlistProvider>(context);
     // final cartProvider = Provider.of<CartProvider>(context);
     // media query
     Size size = MediaQuery.of(context).size;
@@ -80,11 +83,24 @@ class CartWidgets extends StatelessWidget {
                                       ),
                                     ),
                                     IconButton(
-                                      onPressed: () {},
-                                      icon: const Icon(
-                                        IconlyLight.heart,
-                                        // color: Colors.red,
-                                      ),
+                                      onPressed: () {
+                                        wishlistProvider
+                                            .addProductToCartAndRemoveWishlist(
+                                                productID: getCurrentProduct
+                                                    .productId);
+                                      },
+                                      icon:
+                                          wishlistProvider.isProductInWishlist(
+                                                  productId: getCurrentProduct
+                                                      .productId)
+                                              ? const Icon(
+                                                  IconlyBold.heart,
+                                                  color: Colors.red,
+                                                )
+                                              : const Icon(
+                                                  IconlyLight.heart,
+                                                  color: Colors.black,
+                                                ),
                                     ),
                                   ],
                                 )

@@ -9,6 +9,8 @@ import 'package:new_shope/features/profile/presentation/view/widgets/general_lis
 import 'package:new_shope/features/profile/presentation/view/widgets/top_profile_view.dart';
 import 'package:new_shope/features/signIn/presentation/view/login_in_view.dart';
 
+import '../../../../../core/utils/app_image.dart';
+
 class ProfileViewBody extends StatelessWidget {
   const ProfileViewBody({super.key});
 
@@ -41,7 +43,7 @@ class ProfileViewBody extends StatelessWidget {
                       await AlertDialogMethods.showDialogWaring(
                         context: context,
                         titleBottom: 'Logout',
-                        lottileAnimation: 'assets/lottile/logout.json',
+                        lottileAnimation: MangerImage.kLogout,
                         function: () async {
                           await Navigator.of(context).pushNamedAndRemoveUntil(
                               LoginView.kLogin, (route) => false);

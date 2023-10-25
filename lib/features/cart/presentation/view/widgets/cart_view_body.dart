@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:iconly/iconly.dart';
+import 'package:new_shope/core/utils/app_image.dart';
 import 'package:new_shope/core/utils/widgets/alert_dialog.dart';
 import 'package:new_shope/core/utils/widgets/empty_widgets.dart';
 import 'package:new_shope/core/utils/widgets/title_text.dart';
-import 'package:new_shope/features/home/presentation/view/home_view.dart';
 import 'package:new_shope/features/search/presentation/manger/provider/product_provider.dart';
+import 'package:new_shope/root_view.dart';
 import 'package:provider/provider.dart';
 
 import '../../manger/provider/cart_provider.dart';
@@ -27,7 +29,7 @@ class CartViewBody extends StatelessWidget {
                 subTitle: 'Your cart is empty',
                 titleBottom: 'Shope Now',
                 function: () {
-                  Navigator.of(context).pushNamed(HomeView.kHome);
+                  Navigator.of(context).pushNamed(RootView.kRoot);
                 },
               ),
             ],
@@ -45,7 +47,7 @@ class CartViewBody extends StatelessWidget {
                     AlertDialogMethods.showDialogWaring(
                       context: context,
                       titleBottom: 'Delete My Cart',
-                      lottileAnimation: 'assets/lottile/delete_cart.json',
+                      lottileAnimation: MangerImage.kDeleteCartAndWishlist,
                       function: () {
                         cartProvider.clearLocal();
                         Navigator.of(context).pop();
@@ -54,7 +56,7 @@ class CartViewBody extends StatelessWidget {
                     );
                   },
                   icon: Icon(
-                    Icons.delete_forever_outlined,
+                    IconlyLight.delete,
                     color: Colors.red.shade400,
                     size: 28,
                   ),

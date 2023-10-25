@@ -2,13 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:iconly/iconly.dart';
 import 'package:new_shope/core/utils/widgets/title_text.dart';
+import 'package:new_shope/features/wishlist/presentation/view_model/provider/wishlist_provider.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../cart/presentation/manger/provider/cart_provider.dart';
 import '../../../../search/presentation/manger/provider/product_provider.dart';
 
 class BottomNavBarDetailsView extends StatelessWidget {
-  const BottomNavBarDetailsView({super.key});
+  const BottomNavBarDetailsView({super.key, required this.productId});
+
+  final String productId;
 
   @override
   Widget build(BuildContext context) {
@@ -17,6 +20,10 @@ class BottomNavBarDetailsView extends StatelessWidget {
     final productId = ModalRoute.of(context)!.settings.arguments as String;
     final getCurrProduct = productProvider.findByProductId(productId);
     final cartProvider = Provider.of<CartProvider>(context);
+
+    // add wishlist
+    final wishlistProvider = Provider.of<WishlistProvider>(context);
+
     return SafeArea(
       bottom: true,
       child: Padding(
@@ -73,12 +80,21 @@ class BottomNavBarDetailsView extends StatelessWidget {
                 color: Colors.black54,
               ),
               child: IconButton(
-                onPressed: () {},
-                icon: const Icon(
-                  IconlyBold.heart,
-                  color: Colors.white,
-                ),
-              ),
+                  onPressed: () {
+                    wishlistProvider.addProductToCartAndRemoveWishlist(
+                      productID: productId,
+                    );
+                  },
+                  icon:
+                      wishlistProvider.isProductInWishlist(productId: productId)
+                          ? const Icon(
+                              IconlyBold.heart,
+                              color: Colors.red,
+                            )
+                          : const Icon(
+                              IconlyLight.heart,
+                              color: Color.fromARGB(255, 255, 255, 255),
+                            )),
             ),
           ],
         ),

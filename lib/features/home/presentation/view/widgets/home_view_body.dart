@@ -58,7 +58,7 @@ class HomeViewBody extends StatelessWidget {
             height: 20.h,
           ),
           SizedBox(
-            height: 285.h,
+            height: 240.h,
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
               itemCount: productList.length,

@@ -106,21 +106,6 @@ class _SearchViewBodyState extends State<SearchViewBody> {
                     ),
                   ),
                 ],
-                // Expanded(
-                //   child: DynamicHeightGridView(
-                //     itemCount: searchTextController.text.isNotEmpty
-                //         ? productListSearch.length
-                //         : productList.length,
-                //     crossAxisCount: 2,
-                //     builder: (context, index) {
-                //       return ProductWidgets(
-                //         productId: searchTextController.text.isNotEmpty
-                //             ? productListSearch[index].productId
-                //             : productList[index].productId,
-                //       );
-                //     },
-                //   ),
-                // ),
                 Expanded(
                   child: DynamicHeightGridView(
                     itemCount: searchTextController.text.isNotEmpty

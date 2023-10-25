@@ -5,6 +5,9 @@ import 'package:iconly/iconly.dart';
 import 'package:new_shope/core/utils/widgets/title_text.dart';
 import 'package:new_shope/features/details/presentation/view/widgets/bottom_nav_bar_details_view.dart';
 import 'package:new_shope/features/details/presentation/view/widgets/details_view_body.dart';
+import 'package:provider/provider.dart';
+
+import '../../../search/presentation/manger/provider/product_provider.dart';
 
 class DetailsView extends StatelessWidget {
   static const kDetails = '/kDetailsView';
@@ -12,6 +15,14 @@ class DetailsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final productProviderDetails =
+        Provider.of<ProductProvider>(context, listen: false);
+
+    // Navigator
+    String productId = ModalRoute.of(context)!.settings.arguments as String;
+    final getCurrentProduct = productProviderDetails.findByProductId(productId);
+
+    // final productModel = Provider.of<ProductModel>(context);
     return Scaffold(
       extendBody: true,
       resizeToAvoidBottomInset: false,
@@ -33,7 +44,9 @@ class DetailsView extends StatelessWidget {
         ),
         elevation: 5,
       ),
-      bottomNavigationBar: const BottomNavBarDetailsView(),
+      bottomNavigationBar: BottomNavBarDetailsView(
+        productId: productId,
+      ),
       body: const DetailsViewBody(),
     );
   }

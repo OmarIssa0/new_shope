@@ -1,11 +1,15 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:iconly/iconly.dart';
 import 'package:new_shope/features/signIn/presentation/view/widgets/bottom_signIn_and_signup.dart';
 import 'package:new_shope/features/signIn/presentation/view/widgets/forgot_pawword_login_view.dart';
+import 'package:new_shope/root_view.dart';
 
 import '../../../../../core/constant/my_validators.dart';
-import '../../../../../core/utils/animation_nav.dart';
+import '../../../../../core/utils/app_image.dart';
+import '../../../../../core/utils/widgets/alert_dialog.dart';
 
 class LoginTextFiled extends StatefulWidget {
   const LoginTextFiled({super.key});
@@ -25,6 +29,10 @@ class _LoginTextFiledState extends State<LoginTextFiled> {
   late final _formKey = GlobalKey<FormState>();
   // show icon Password
   bool obscureText = true;
+  // loading in signUp
+  bool _isLoading = false;
+  // auth firebase
+  final _auth = FirebaseAuth.instance;
 
   @override
   void initState() {
@@ -52,7 +60,58 @@ class _LoginTextFiledState extends State<LoginTextFiled> {
     final isValid = _formKey.currentState!.validate();
     FocusScope.of(context).unfocus();
     if (isValid) {
-      Navigator.of(context).push(AnimationNav.createRouteHomeView());
+      _formKey.currentState!.save();
+
+      final isValid = _formKey.currentState!.validate();
+      FocusScope.of(context).unfocus();
+      if (isValid) {
+        _formKey.currentState!.save();
+
+        try {
+          setState(() {
+            _isLoading = true;
+          });
+          await _auth.signInWithEmailAndPassword(
+            email: _emailTextController.text.trim(),
+            password: _emailTextController.text.trim(),
+          );
+          Fluttertoast.showToast(
+            msg: "Login Successful",
+            toastLength: Toast.LENGTH_SHORT,
+            textColor: Colors.white,
+          );
+          if (!mounted) return;
+          await Navigator.of(context)
+              .pushNamedAndRemoveUntil(RootView.kRoot, (route) => false);
+
+          // Navigator.of(context)
+          //     .pushAndRemoveUntil(AnimationNav.createRouteHomeView());
+        } on FirebaseAuthException catch (error) {
+          AlertDialogMethods.showError(
+            context: context,
+            subtitle: "An error has been occured ${error.message}",
+            titleBottom: "Ok",
+            lottileAnimation: MangerImage.kError,
+            function: () {
+              Navigator.of(context).pop();
+            },
+          );
+        } catch (error) {
+          AlertDialogMethods.showError(
+            context: context,
+            subtitle: "An error has been occured $error",
+            titleBottom: "Ok",
+            lottileAnimation: MangerImage.kError,
+            function: () {
+              Navigator.of(context).pop();
+            },
+          );
+        } finally {
+          setState(() {
+            _isLoading = false;
+          });
+        }
+      }
     }
   }
 

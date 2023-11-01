@@ -1,9 +1,13 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:iconly/iconly.dart';
+import 'package:new_shope/core/utils/app_image.dart';
+import 'package:new_shope/core/utils/widgets/alert_dialog.dart';
+import 'package:new_shope/root_view.dart';
 
 import '../../../../../core/constant/my_validators.dart';
-import '../../../../../core/utils/animation_nav.dart';
 import '../../../../signIn/presentation/view/widgets/bottom_signIn_and_signup.dart';
 
 class TextFiledSignUp extends StatefulWidget {
@@ -28,6 +32,10 @@ class _TextFiledSignUpState extends State<TextFiledSignUp> {
   late final _formKey = GlobalKey<FormState>();
   // show icon Password
   bool obscureText = true;
+  // loading in signUp
+  bool _isLoading = false;
+  // auth firebase
+  final auth = FirebaseAuth.instance;
 
   @override
   void initState() {
@@ -63,7 +71,49 @@ class _TextFiledSignUpState extends State<TextFiledSignUp> {
     final isValid = _formKey.currentState!.validate();
     FocusScope.of(context).unfocus();
     if (isValid) {
-      Navigator.of(context).push(AnimationNav.createRouteHomeView());
+      _formKey.currentState!.save();
+      // Navigator.of(context).push(AnimationNav.createRouteHomeView());
+      try {
+        setState(() {
+          _isLoading = true;
+        });
+        await auth.createUserWithEmailAndPassword(
+          email: _emailTextController.text.trim(),
+          password: _emailTextController.text.trim(),
+        );
+        Fluttertoast.showToast(
+          msg: "An account has been created",
+          toastLength: Toast.LENGTH_SHORT,
+          textColor: Colors.white,
+        );
+        if (!mounted) return;
+        await Navigator.of(context)
+            .pushNamedAndRemoveUntil(RootView.kRoot, (route) => false);
+      } on FirebaseAuthException catch (error) {
+        AlertDialogMethods.showError(
+          context: context,
+          subtitle: "An error has been occured ${error.message}",
+          titleBottom: "Ok",
+          lottileAnimation: MangerImage.kError,
+          function: () {
+            Navigator.of(context).pop();
+          },
+        );
+      } catch (error) {
+        AlertDialogMethods.showError(
+          context: context,
+          subtitle: "An error has been occured $error",
+          titleBottom: "Ok",
+          lottileAnimation: MangerImage.kError,
+          function: () {
+            Navigator.of(context).pop();
+          },
+        );
+      } finally {
+        setState(() {
+          _isLoading = false;
+        });
+      }
     }
   }
 

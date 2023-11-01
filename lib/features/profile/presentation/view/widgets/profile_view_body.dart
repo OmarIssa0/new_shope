@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -11,9 +12,15 @@ import 'package:new_shope/features/signIn/presentation/view/login_in_view.dart';
 
 import '../../../../../core/utils/app_image.dart';
 
-class ProfileViewBody extends StatelessWidget {
+class ProfileViewBody extends StatefulWidget {
   const ProfileViewBody({super.key});
 
+  @override
+  State<ProfileViewBody> createState() => _ProfileViewBodyState();
+}
+
+class _ProfileViewBodyState extends State<ProfileViewBody> {
+  User? user = FirebaseAuth.instance.currentUser;
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -36,20 +43,28 @@ class ProfileViewBody extends StatelessWidget {
                     color: Colors.red.shade100,
                   ),
                   child: CustomListTile(
-                    iconLeading: IconlyBold.logout,
+                    iconLeading:
+                        user == null ? IconlyBold.login : IconlyBold.logout,
                     iconTrailing: IconlyLight.arrow_right_2,
-                    title: 'Log out',
+                    title: user == null ? "Login" : 'Logout',
                     function: () async {
-                      await AlertDialogMethods.showDialogWaring(
-                        context: context,
-                        titleBottom: 'Logout',
-                        lottileAnimation: MangerImage.kLogout,
-                        function: () async {
-                          await Navigator.of(context).pushNamedAndRemoveUntil(
-                              LoginView.kLogin, (route) => false);
-                        },
-                        isError: false,
-                      );
+                      if (user == null) {
+                        await Navigator.of(context).pushNamedAndRemoveUntil(
+                            LoginView.kLogin, (route) => false);
+                      } else {
+                        await AlertDialogMethods.showDialogWaring(
+                          context: context,
+                          titleBottom: user == null ? "Login" : 'Logout',
+                          lottileAnimation: MangerImage.kLogout,
+                          function: () async {
+                            await FirebaseAuth.instance.signOut();
+                            if (!mounted) return;
+                            await Navigator.of(context).pushNamedAndRemoveUntil(
+                                LoginView.kLogin, (route) => false);
+                          },
+                          isError: false,
+                        );
+                      }
                     },
                   ),
                 ),

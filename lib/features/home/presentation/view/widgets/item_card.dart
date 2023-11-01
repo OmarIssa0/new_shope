@@ -12,6 +12,7 @@ class ItemCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final passedCategory = ModalRoute.of(context)!.settings.arguments;
     final productModel = Provider.of<ProductModel>(context);
     return SizedBox(
       // height: 420.h,s

@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import 'package:ionicons/ionicons.dart';
 import 'package:new_shope/core/utils/animation_nav.dart';
 import 'package:new_shope/core/utils/widgets/title_text.dart';
 import 'package:new_shope/features/signIn/presentation/view/widgets/text_filed_login.dart';
 import 'package:new_shope/features/signIn/presentation/view/widgets/title_login_view.dart';
 import 'package:new_shope/root_view.dart';
+
+import 'goolge_sign_in.dart';
 
 class LoginInViewBody extends StatelessWidget {
   const LoginInViewBody({super.key});
@@ -42,29 +43,7 @@ class LoginInViewBody extends StatelessWidget {
             indent: 30.r,
             color: Colors.grey.shade300,
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Icon(
-                Ionicons.logo_google,
-                color: Colors.red,
-                size: 40,
-              ),
-              SizedBox(
-                width: 20.w,
-              ),
-              const Icon(
-                Ionicons.logo_facebook,
-                color: Colors.blue,
-                size: 40,
-              ),
-              // Icon(
-              //   Ionicons.logo_apple,
-              //   color: Colors.black,
-              //   size: 40,
-              // ),
-            ],
-          ),
+          const GoogleSignInBottom(),
           SizedBox(height: 50.h),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,

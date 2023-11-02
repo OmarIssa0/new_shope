@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:iconly/iconly.dart';
 import 'package:new_shope/features/signIn/presentation/view/widgets/bottom_signIn_and_signup.dart';
-import 'package:new_shope/features/signIn/presentation/view/widgets/forgot_pawword_login_view.dart';
+import 'package:new_shope/features/signIn/presentation/view/widgets/forgot_password_login_view.dart';
 import 'package:new_shope/root_view.dart';
 
 import '../../../../../core/constant/my_validators.dart';

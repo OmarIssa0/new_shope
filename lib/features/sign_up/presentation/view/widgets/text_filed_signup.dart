@@ -5,10 +5,10 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:iconly/iconly.dart';
 import 'package:new_shope/core/utils/app_image.dart';
 import 'package:new_shope/core/utils/widgets/alert_dialog.dart';
+import 'package:new_shope/features/signIn/presentation/view/login_in_view.dart';
 import 'package:new_shope/loading_manger.dart';
 
 import '../../../../../core/constant/my_validators.dart';
-import '../../../../../root_view.dart';
 import '../../../../signIn/presentation/view/widgets/bottom_signIn_and_signup.dart';
 
 class TextFiledSignUp extends StatefulWidget {
@@ -88,9 +88,20 @@ class _TextFiledSignUpState extends State<TextFiledSignUp> {
           toastLength: Toast.LENGTH_SHORT,
           textColor: Colors.white,
         );
+        // if (!mounted) return;
+        // AlertDialogMethods.showDialogForgotPassword(
+        //   context: context,
+        //   subtitle: 'Please confirm your email! Check your email!',
+        //   // isError: false,
+        //   titleBottom: 'Cancel',
+        //   lottileAnimation: MangerImage.kSendEmail,
+        //   function: () {
+        //     Navigator.of(context).pop();
+        //   },
+        // );
+        FirebaseAuth.instance.currentUser!.sendEmailVerification();
         if (!mounted) return;
-        await Navigator.of(context)
-            .pushNamedAndRemoveUntil(RootView.kRoot, (route) => false);
+        await Navigator.of(context).pushNamed(LoginView.kLogin);
         // await Navigator.of(context).pushReplacement("/kLogin");
       } on FirebaseAuthException catch (error) {
         if (error.code == "weak-password") {

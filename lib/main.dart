@@ -80,9 +80,10 @@ class _MyAppState extends State<MyApp> {
             ),
             // child: MaterialApp.router(
             child: MaterialApp(
-              initialRoute: FirebaseAuth.instance.currentUser == null
-                  ? LoginView.kLogin
-                  : RootView.kRoot,
+              initialRoute: (FirebaseAuth.instance.currentUser != null &&
+                      FirebaseAuth.instance.currentUser!.emailVerified)
+                  ? RootView.kRoot
+                  : LoginView.kLogin,
               routes: {
                 LoginView.kLogin: (context) => const LoginView(),
                 RootView.kRoot: (context) => const RootView(),

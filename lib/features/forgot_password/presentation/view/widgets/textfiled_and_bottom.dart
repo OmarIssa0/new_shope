@@ -70,7 +70,7 @@ class _TextFiledForgotPasswordAndBottomState
       } on FirebaseAuthException catch (error) {
         AlertDialogMethods.showError(
           context: context,
-          subtitle: " ${error.message}",
+          subtitle: "${error.message}",
           titleBottom: "Ok",
           lottileAnimation: MangerImage.kError,
           function: () {

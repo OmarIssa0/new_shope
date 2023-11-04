@@ -74,34 +74,60 @@ class _LoginTextFiledState extends State<LoginTextFiled> {
           email: _emailTextController.text.trim(),
           password: _passwordTextController.text.trim(),
         );
-        Fluttertoast.showToast(
-          msg: "Login Successful",
-          toastLength: Toast.LENGTH_SHORT,
-          textColor: Colors.white,
-        );
 
-        if (!mounted) return;
-
-        await Navigator.of(context)
-            .pushNamedAndRemoveUntil(RootView.kRoot, (route) => false);
+        // if (!mounted) return;
+        // FirebaseAuth.instance.
+        if (auth.user!.emailVerified) {
+          Fluttertoast.showToast(
+            msg: "Login Successful",
+            toastLength: Toast.LENGTH_SHORT,
+            textColor: Colors.white,
+          );
+          if (!mounted) return;
+          await Navigator.of(context)
+              .pushNamedAndRemoveUntil(RootView.kRoot, (route) => false);
+        } else {
+          FirebaseAuth.instance.currentUser!.sendEmailVerification();
+          if (!mounted) return;
+          AlertDialogMethods.showDialogForgotPassword(
+            context: context,
+            subtitle: 'Please confirm your email! Check your email!',
+            // isError: false,
+            titleBottom: 'Cancel',
+            lottileAnimation: MangerImage.kSendEmail,
+            function: () {
+              // Navigator.of(context).pop();
+            },
+          );
+        }
 
         // Navigator.of(context)
         //     .pushAndRemoveUntil(AnimationNav.createRouteHomeView());
-      } on FirebaseAuthException catch (error) {
-        if (error.code == "user-not-found") {
+      } on FirebaseAuthException catch (e) {
+        if (e.code == 'user-not-found') {
           AlertDialogMethods.showError(
             context: context,
-            subtitle: "No user founded for that email.",
+            subtitle: "No user found for that email.",
             titleBottom: "Ok",
             lottileAnimation: MangerImage.kError,
             function: () {
               Navigator.of(context).pop();
             },
           );
-        } else if (error.code == "wrong-password") {
+        } else if (e.code == 'wrong-password') {
           AlertDialogMethods.showError(
             context: context,
             subtitle: "Wrong password provided for that user.",
+            titleBottom: "Ok",
+            lottileAnimation: MangerImage.kError,
+            function: () {
+              Navigator.of(context).pop();
+            },
+          );
+        } else {
+          AlertDialogMethods.showError(
+            context: context,
+            subtitle: e.message,
             titleBottom: "Ok",
             lottileAnimation: MangerImage.kError,
             function: () {

@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -33,78 +34,75 @@ void main() async {
   );
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return FutureBuilder(
-        // future: Firebase.initializeApp(),
-        builder: (context, snapshot) {
-      // اذا بعمل تحميل
-      if (snapshot.connectionState == ConnectionState.waiting) {
-        const Scaffold(
-          body: Center(child: CircularProgressIndicator()),
-        );
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  @override
+  void initState() {
+    FirebaseAuth.instance.authStateChanges().listen((User? user) {
+      if (user == null) {
+        print(
+            '========================================User is currently signed out!');
       } else {
-        Scaffold(
-          body: Center(
-              child: SelectableText(
-                  "An error has been occured ${snapshot.error}")),
-        );
+        print('========================================User is signed in!');
       }
-      if (snapshot.hasError) {
-        return Scaffold(
-          body: Center(
-              child: SelectableText(
-                  "An error has been occured ${snapshot.error}")),
-        );
-      }
-      return MultiProvider(
-        providers: [
-          ChangeNotifierProvider(
-            create: (context) => ProductProvider(),
-          ),
-          ChangeNotifierProvider(
-            create: (context) => CartProvider(),
-          ),
-          ChangeNotifierProvider(
-            create: (_) => WishlistProvider(),
-          ),
-        ],
-        child: ScreenUtilInit(
-          designSize: const Size(375, 812),
-          minTextAdapt: true,
-          splitScreenMode: true,
-          builder: (context, child) {
-            return AnnotatedRegion<SystemUiOverlayStyle>(
-              value: const SystemUiOverlayStyle(
-                statusBarColor: Colors.transparent,
-              ),
-              // child: MaterialApp.router(
-              child: MaterialApp(
-                initialRoute: LoginView.kLogin,
-                routes: {
-                  LoginView.kLogin: (context) => const LoginView(),
-                  RootView.kRoot: (context) => const RootView(),
-                  HomeView.kHome: (context) => const HomeView(),
-                  SearchView.kSearch: (context) => const SearchView(),
-                  CartView.kCart: (context) => const CartView(),
-                  ProfileView.kProfile: (context) => const ProfileView(),
-                  DetailsView.kDetails: (context) => const DetailsView(),
-                  WishlistView.kWishlist: (context) => const WishlistView(),
-                  SignUpView.kSignUp: (context) => const SignUpView(),
-                  ForgotPasswordView.kForgotPassword: (context) =>
-                      const ForgotPasswordView()
-                },
-                debugShowCheckedModeBanner: false,
-                // routerConfig: AppRouter.router,
-                theme: Styles.themeData(context: context),
-              ),
-            );
-          },
-        ),
-      );
     });
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (context) => ProductProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => CartProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => WishlistProvider(),
+        ),
+      ],
+      child: ScreenUtilInit(
+        designSize: const Size(375, 812),
+        minTextAdapt: true,
+        splitScreenMode: true,
+        builder: (context, child) {
+          return AnnotatedRegion<SystemUiOverlayStyle>(
+            value: const SystemUiOverlayStyle(
+              statusBarColor: Colors.transparent,
+            ),
+            // child: MaterialApp.router(
+            child: MaterialApp(
+              initialRoute: FirebaseAuth.instance.currentUser == null
+                  ? LoginView.kLogin
+                  : RootView.kRoot,
+              routes: {
+                LoginView.kLogin: (context) => const LoginView(),
+                RootView.kRoot: (context) => const RootView(),
+                HomeView.kHome: (context) => const HomeView(),
+                SearchView.kSearch: (context) => const SearchView(),
+                CartView.kCart: (context) => const CartView(),
+                ProfileView.kProfile: (context) => const ProfileView(),
+                DetailsView.kDetails: (context) => const DetailsView(),
+                WishlistView.kWishlist: (context) => const WishlistView(),
+                SignUpView.kSignUp: (context) => const SignUpView(),
+                ForgotPasswordView.kForgotPassword: (context) =>
+                    const ForgotPasswordView()
+              },
+              debugShowCheckedModeBanner: false,
+              // routerConfig: AppRouter.router,
+              theme: Styles.themeData(context: context),
+            ),
+          );
+        },
+      ),
+    );
   }
 }

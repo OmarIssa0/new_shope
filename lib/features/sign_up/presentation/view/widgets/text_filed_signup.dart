@@ -5,9 +5,10 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:iconly/iconly.dart';
 import 'package:new_shope/core/utils/app_image.dart';
 import 'package:new_shope/core/utils/widgets/alert_dialog.dart';
-import 'package:new_shope/root_view.dart';
+import 'package:new_shope/loading_manger.dart';
 
 import '../../../../../core/constant/my_validators.dart';
+import '../../../../../root_view.dart';
 import '../../../../signIn/presentation/view/widgets/bottom_signIn_and_signup.dart';
 
 class TextFiledSignUp extends StatefulWidget {
@@ -35,7 +36,7 @@ class _TextFiledSignUpState extends State<TextFiledSignUp> {
   // loading in signUp
   bool _isLoading = false;
   // auth firebase
-  final auth = FirebaseAuth.instance;
+  // final auth = FirebaseAuth.instance;
 
   @override
   void initState() {
@@ -77,9 +78,10 @@ class _TextFiledSignUpState extends State<TextFiledSignUp> {
         setState(() {
           _isLoading = true;
         });
-        await auth.createUserWithEmailAndPassword(
+
+        final auth = await FirebaseAuth.instance.createUserWithEmailAndPassword(
           email: _emailTextController.text.trim(),
-          password: _emailTextController.text.trim(),
+          password: _passwordTextController.text.trim(),
         );
         Fluttertoast.showToast(
           msg: "An account has been created",
@@ -89,16 +91,29 @@ class _TextFiledSignUpState extends State<TextFiledSignUp> {
         if (!mounted) return;
         await Navigator.of(context)
             .pushNamedAndRemoveUntil(RootView.kRoot, (route) => false);
+        // await Navigator.of(context).pushReplacement("/kLogin");
       } on FirebaseAuthException catch (error) {
-        AlertDialogMethods.showError(
-          context: context,
-          subtitle: "An error has been occured ${error.message}",
-          titleBottom: "Ok",
-          lottileAnimation: MangerImage.kError,
-          function: () {
-            Navigator.of(context).pop();
-          },
-        );
+        if (error.code == "weak-password") {
+          AlertDialogMethods.showError(
+            context: context,
+            subtitle: "The password provided is too weak.",
+            titleBottom: "Ok",
+            lottileAnimation: MangerImage.kError,
+            function: () {
+              Navigator.of(context).pop();
+            },
+          );
+        } else if (error.code == "email-already-in-use") {
+          AlertDialogMethods.showError(
+            context: context,
+            subtitle: "The account already exists for that email.",
+            titleBottom: "Ok",
+            lottileAnimation: MangerImage.kError,
+            function: () {
+              Navigator.of(context).pop();
+            },
+          );
+        }
       } catch (error) {
         AlertDialogMethods.showError(
           context: context,
@@ -123,130 +138,133 @@ class _TextFiledSignUpState extends State<TextFiledSignUp> {
       onTap: () => FocusScope.of(context).unfocus(),
       child: Form(
         key: _formKey,
-        child: Column(
-          children: [
-            SizedBox(
-              height: 35.h,
-            ),
-            TextFormField(
-              focusNode: _nameFocusNode,
-              controller: _nameTextController,
-              textInputAction: TextInputAction.next,
-              keyboardType: TextInputType.text,
-              decoration: InputDecoration(
-                hintText: 'Full Name',
-                prefixIcon: Icon(
-                  IconlyLight.profile,
-                  color: Colors.grey.shade700,
-                ),
+        child: LoadingMangerView(
+          isLoading: _isLoading,
+          child: Column(
+            children: [
+              SizedBox(
+                height: 35.h,
               ),
-              onFieldSubmitted: (value) {
-                FocusScope.of(context).requestFocus(_emailFocusNode);
-              },
-              validator: (value) {
-                return MyValidators.displayNameValidator(value);
-              },
-            ),
-            SizedBox(
-              height: 16.h,
-            ),
-            TextFormField(
-              controller: _emailTextController,
-              focusNode: _emailFocusNode,
-              textInputAction: TextInputAction.next,
-              keyboardType: TextInputType.emailAddress,
-              decoration: InputDecoration(
-                hintText: 'Email Address',
-                prefixIcon: Icon(
-                  IconlyLight.message,
-                  color: Colors.grey.shade700,
+              TextFormField(
+                focusNode: _nameFocusNode,
+                controller: _nameTextController,
+                textInputAction: TextInputAction.next,
+                keyboardType: TextInputType.text,
+                decoration: InputDecoration(
+                  hintText: 'Full Name',
+                  prefixIcon: Icon(
+                    IconlyLight.profile,
+                    color: Colors.grey.shade700,
+                  ),
                 ),
+                onFieldSubmitted: (value) {
+                  FocusScope.of(context).requestFocus(_emailFocusNode);
+                },
+                validator: (value) {
+                  return MyValidators.displayNameValidator(value);
+                },
               ),
-              onFieldSubmitted: (value) {
-                FocusScope.of(context).requestFocus(_passwordFocusNode);
-              },
-              validator: (value) {
-                return MyValidators.emailValidator(value);
-              },
-            ),
-            SizedBox(
-              height: 16.h,
-            ),
-            TextFormField(
-              obscureText: obscureText,
-              controller: _passwordTextController,
-              focusNode: _passwordFocusNode,
-              textInputAction: TextInputAction.next,
-              keyboardType: TextInputType.visiblePassword,
-              decoration: InputDecoration(
-                hintText: 'Password',
-                prefixIcon: Icon(
-                  IconlyLight.unlock,
-                  color: Colors.grey.shade700,
-                ),
-                suffixIcon: IconButton(
-                  onPressed: () {
-                    setState(() {
-                      obscureText = !obscureText;
-                    });
-                  },
-                  icon: obscureText
-                      ? const Icon(IconlyLight.show)
-                      : const Icon(IconlyLight.hide),
-                ),
+              SizedBox(
+                height: 16.h,
               ),
-              onFieldSubmitted: (value) {
-                FocusScope.of(context).requestFocus(_repeatPasswordFocusNode);
-                _signUpFct();
-              },
-              validator: (value) {
-                return MyValidators.passwordValidator(value);
-              },
-            ),
-            SizedBox(
-              height: 16.h,
-            ),
-            TextFormField(
-              obscureText: obscureText,
-              controller: _repeatPasswordTextController,
-              focusNode: _repeatPasswordFocusNode,
-              textInputAction: TextInputAction.done,
-              keyboardType: TextInputType.visiblePassword,
-              decoration: InputDecoration(
-                hintText: 'Reset Password',
-                prefixIcon: Icon(
-                  IconlyLight.unlock,
-                  color: Colors.grey.shade700,
+              TextFormField(
+                controller: _emailTextController,
+                focusNode: _emailFocusNode,
+                textInputAction: TextInputAction.next,
+                keyboardType: TextInputType.emailAddress,
+                decoration: InputDecoration(
+                  hintText: 'Email Address',
+                  prefixIcon: Icon(
+                    IconlyLight.message,
+                    color: Colors.grey.shade700,
+                  ),
                 ),
-                suffixIcon: IconButton(
-                  onPressed: () {
-                    setState(() {
-                      obscureText = !obscureText;
-                    });
-                  },
-                  icon: obscureText
-                      ? const Icon(IconlyLight.show)
-                      : const Icon(IconlyLight.hide),
-                ),
+                onFieldSubmitted: (value) {
+                  FocusScope.of(context).requestFocus(_passwordFocusNode);
+                },
+                validator: (value) {
+                  return MyValidators.emailValidator(value);
+                },
               ),
-              onFieldSubmitted: (value) {
-                _signUpFct();
-              },
-              validator: (value) {
-                return MyValidators.repeatPasswordValidator(
-                    value: value, password: _passwordTextController.text);
-              },
-            ),
-            SizedBox(
-              height: 44.h,
-            ),
-            BottomSignInAndSignUp(
-              function: () {
-                _signUpFct();
-              },
-              name: 'Sign Up',
-            )
-          ],
+              SizedBox(
+                height: 16.h,
+              ),
+              TextFormField(
+                obscureText: obscureText,
+                controller: _passwordTextController,
+                focusNode: _passwordFocusNode,
+                textInputAction: TextInputAction.next,
+                keyboardType: TextInputType.visiblePassword,
+                decoration: InputDecoration(
+                  hintText: 'Password',
+                  prefixIcon: Icon(
+                    IconlyLight.unlock,
+                    color: Colors.grey.shade700,
+                  ),
+                  suffixIcon: IconButton(
+                    onPressed: () {
+                      setState(() {
+                        obscureText = !obscureText;
+                      });
+                    },
+                    icon: obscureText
+                        ? const Icon(IconlyLight.show)
+                        : const Icon(IconlyLight.hide),
+                  ),
+                ),
+                onFieldSubmitted: (value) {
+                  FocusScope.of(context).requestFocus(_repeatPasswordFocusNode);
+                  _signUpFct();
+                },
+                validator: (value) {
+                  return MyValidators.passwordValidator(value);
+                },
+              ),
+              SizedBox(
+                height: 16.h,
+              ),
+              TextFormField(
+                obscureText: obscureText,
+                controller: _repeatPasswordTextController,
+                focusNode: _repeatPasswordFocusNode,
+                textInputAction: TextInputAction.done,
+                keyboardType: TextInputType.visiblePassword,
+                decoration: InputDecoration(
+                  hintText: 'Reset Password',
+                  prefixIcon: Icon(
+                    IconlyLight.unlock,
+                    color: Colors.grey.shade700,
+                  ),
+                  suffixIcon: IconButton(
+                    onPressed: () {
+                      setState(() {
+                        obscureText = !obscureText;
+                      });
+                    },
+                    icon: obscureText
+                        ? const Icon(IconlyLight.show)
+                        : const Icon(IconlyLight.hide),
+                  ),
+                ),
+                onFieldSubmitted: (value) {
+                  _signUpFct();
+                },
+                validator: (value) {
+                  return MyValidators.repeatPasswordValidator(
+                      value: value, password: _passwordTextController.text);
+                },
+              ),
+              SizedBox(
+                height: 44.h,
+              ),
+              BottomSignInAndSignUp(
+                function: () {
+                  _signUpFct();
+                },
+                name: 'Sign Up',
+              )
+            ],
+          ),
         ),
       ),
     );

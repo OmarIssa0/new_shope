@@ -24,7 +24,8 @@ class SignUpBodyView extends StatelessWidget {
               maxLine: 3,
             ),
             SizedBox(height: 25.h),
-            const TextFiledSignUp()
+            const TextFiledSignUp(),
+            
           ],
         ),
       ),

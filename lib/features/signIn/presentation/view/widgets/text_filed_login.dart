@@ -34,7 +34,7 @@ class _LoginTextFiledState extends State<LoginTextFiled> {
   bool _isLoading = false;
 
   // auth firebase
-  final _auth = FirebaseAuth.instance;
+  // final _auth = FirebaseAuth.instance;
 
   @override
   void initState() {
@@ -70,9 +70,9 @@ class _LoginTextFiledState extends State<LoginTextFiled> {
           _isLoading = true;
         });
         // const CircularProgressIndicator();
-        await _auth.signInWithEmailAndPassword(
+        final auth = await FirebaseAuth.instance.signInWithEmailAndPassword(
           email: _emailTextController.text.trim(),
-          password: _emailTextController.text.trim(),
+          password: _passwordTextController.text.trim(),
         );
         Fluttertoast.showToast(
           msg: "Login Successful",
@@ -88,15 +88,27 @@ class _LoginTextFiledState extends State<LoginTextFiled> {
         // Navigator.of(context)
         //     .pushAndRemoveUntil(AnimationNav.createRouteHomeView());
       } on FirebaseAuthException catch (error) {
-        AlertDialogMethods.showError(
-          context: context,
-          subtitle: "An error has been occured ${error.message}",
-          titleBottom: "Ok",
-          lottileAnimation: MangerImage.kError,
-          function: () {
-            Navigator.of(context).pop();
-          },
-        );
+        if (error.code == "user-not-found") {
+          AlertDialogMethods.showError(
+            context: context,
+            subtitle: "No user founded for that email.",
+            titleBottom: "Ok",
+            lottileAnimation: MangerImage.kError,
+            function: () {
+              Navigator.of(context).pop();
+            },
+          );
+        } else if (error.code == "wrong-password") {
+          AlertDialogMethods.showError(
+            context: context,
+            subtitle: "Wrong password provided for that user.",
+            titleBottom: "Ok",
+            lottileAnimation: MangerImage.kError,
+            function: () {
+              Navigator.of(context).pop();
+            },
+          );
+        }
       } catch (error) {
         AlertDialogMethods.showError(
           context: context,

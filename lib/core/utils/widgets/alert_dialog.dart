@@ -162,12 +162,14 @@ class AlertDialogMethods {
                 padding: const EdgeInsets.all(8.0),
                 child: LottieBuilder.asset(
                   lottileAnimation,
+                  height: 120.h,
                 ),
               ),
               TitleTextAppCustom(
                 label: subtitle ?? '',
-                fontSize: 18.sp,
+                fontSize: 14.sp,
                 color: Colors.white,
+                maxLine: 2,
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 12),

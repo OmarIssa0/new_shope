@@ -1,8 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:ionicons/ionicons.dart';
+import 'package:new_shope/core/utils/widgets/title_text.dart';
 import 'package:new_shope/root_view.dart';
 
 import '../../../../../core/utils/app_image.dart';
@@ -24,15 +25,15 @@ class _GoogleSignInBottomState extends State<GoogleSignInBottom> {
       final googleAuth = await googleAccount.authentication;
       if (googleAuth.accessToken != null && googleAuth.idToken != null) {
         try {
+          // ignore: unused_local_variable
           final authResults = await FirebaseAuth.instance
               .signInWithCredential(GoogleAuthProvider.credential(
             accessToken: googleAuth.accessToken,
             idToken: googleAuth.idToken,
           ));
-          // WidgetsBinding.instance.addPersistentFrameCallback((_) async {
+
           if (!mounted) return;
           Navigator.pushReplacementNamed(context, RootView.kRoot);
-          // });
         } on FirebaseException catch (error) {
           WidgetsBinding.instance.addPersistentFrameCallback((_) async {
             await AlertDialogMethods.showError(
@@ -71,20 +72,47 @@ class _GoogleSignInBottomState extends State<GoogleSignInBottom> {
           onTap: () async {
             await _googleSignIn(context: context);
           },
-          child: const Icon(
-            Ionicons.logo_google,
-            color: Colors.red,
-            size: 40,
+          child: Container(
+            height: 55.h,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(12.r),
+              color: Colors.grey.shade100,
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                children: [
+                  // const Icon(
+                  //   Ionicons.logo_google,
+                  //   color: Colors.red,
+                  //   size: 40,
+                  // ),
+                  SvgPicture.asset("assets/image_svg/Google.svg"),
+                  SizedBox(
+                    width: 7.w,
+                  ),
+                  TitleTextAppCustom(
+                    label: "Sign in with google",
+                    fontSize: 12.sp,
+                    color: Colors.grey.shade900,
+                  ),
+                ],
+              ),
+            ),
           ),
         ),
-        SizedBox(
-          width: 20.w,
-        ),
-        const Icon(
-          Ionicons.logo_facebook,
-          color: Colors.blue,
-          size: 40,
-        ),
+
+        // SizedBox(
+        //   width: 20.w,
+        // ),
+        // // GestureDetector(
+        // //   onTap: () {},
+        //   child: const Icon(
+        //     Ionicons.logo_facebook,
+        //     color: Colors.blue,
+        //     size: 40,
+        //   ),
+        // ),
         // Icon(
         //   Ionicons.logo_apple,
         //   color: Colors.black,

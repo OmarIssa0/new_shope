@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:iconly/iconly.dart';
@@ -21,6 +22,8 @@ class _TextFiledForgotPasswordAndBottomState
   late final TextEditingController _emailTextEditingController;
   // form key
   late final _formKey = GlobalKey<FormState>();
+
+  final auth = FirebaseAuth.instance;
   @override
   void initState() {
     _emailTextEditingController = TextEditingController();
@@ -39,16 +42,62 @@ class _TextFiledForgotPasswordAndBottomState
     final isValid = _formKey.currentState!.validate();
     FocusScope.of(context).unfocus();
     if (isValid) {
-      AlertDialogMethods.showDialogForgotPassword(
-        context: context,
-        subtitle: 'Check the message box',
-        // isError: false,
-        titleBottom: 'Cancel',
-        lottileAnimation: MangerImage.kSendEmail,
-        function: () {
-          Navigator.of(context).pop();
-        },
-      );
+      // Navigator.of(context).push(AnimationNav.createRouteHomeView());
+      try {
+        FirebaseAuth.instance.setLanguageCode("ar");
+        await auth.sendPasswordResetEmail(
+          email: _emailTextEditingController.text.trim(),
+        );
+        if (!mounted) return;
+        AlertDialogMethods.showDialogForgotPassword(
+          context: context,
+          subtitle: 'Password reset link sent! Check your email!',
+          // isError: false,
+          titleBottom: 'Cancel',
+          lottileAnimation: MangerImage.kSendEmail,
+          function: () {
+            Navigator.of(context).pop();
+          },
+        );
+        // Fluttertoast.showToast(
+        //   msg: "An account has been created",
+        //   toastLength: Toast.LENGTH_SHORT,
+        //   textColor: Colors.white,
+        // );
+        // if (!mounted) return;
+        // await Navigator.of(context)
+        //     .pushNamedAndRemoveUntil(RootView.kRoot, (route) => false);
+      } on FirebaseAuthException catch (error) {
+        AlertDialogMethods.showError(
+          context: context,
+          subtitle: " ${error.message}",
+          titleBottom: "Ok",
+          lottileAnimation: MangerImage.kError,
+          function: () {
+            Navigator.of(context).pop();
+          },
+        );
+      } catch (error) {
+        AlertDialogMethods.showError(
+          context: context,
+          subtitle: "An error has been occured $error",
+          titleBottom: "Ok",
+          lottileAnimation: MangerImage.kError,
+          function: () {
+            Navigator.of(context).pop();
+          },
+        );
+      }
+      // AlertDialogMethods.showDialogForgotPassword(
+      //   context: context,
+      //   subtitle: 'Check the message box',
+      //   // isError: false,
+      //   titleBottom: 'Cancel',
+      //   lottileAnimation: MangerImage.kSendEmail,
+      //   function: () {
+      //     Navigator.of(context).pop();
+      //   },
+      // );
       // Navigator.of(context).pop(AnimationNav.createRouteHomeView());
     }
   }

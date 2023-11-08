@@ -1,7 +1,6 @@
 import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:iconly/iconly.dart';
 import 'package:new_shope/core/utils/widgets/title_text.dart';
 import 'package:new_shope/features/cart/presentation/manger/model/cart_model.dart';
 import 'package:new_shope/features/cart/presentation/view/widgets/plus_and_minus.dart';
@@ -89,26 +88,9 @@ class CartWidgets extends StatelessWidget {
                                         color: Colors.red,
                                       ),
                                     ),
-                                    IconButton(
-                                      onPressed: () {
-                                        wishlistProvider
-                                            .addProductToCartAndRemoveWishlist(
-                                                productID: getCurrentProduct
-                                                    .productId);
-                                      },
-                                      icon:
-                                          wishlistProvider.isProductInWishlist(
-                                                  productId: getCurrentProduct
-                                                      .productId)
-                                              ? const Icon(
-                                                  IconlyBold.heart,
-                                                  color: Colors.red,
-                                                )
-                                              : const Icon(
-                                                  IconlyLight.heart,
-                                                  color: Colors.black,
-                                                ),
-                                    ),
+                                    const SizedBox(
+                                      height: 12,
+                                    )
                                   ],
                                 )
                               ],

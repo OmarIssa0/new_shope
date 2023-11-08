@@ -39,6 +39,8 @@ class _ProductWidgetsState extends State<ProductWidgets> {
 
     // mediaQuery
     Size size = MediaQuery.of(context).size;
+    // loading
+    // bool isLoading = false;
 
     // Ui
     // اذا ال get null
@@ -78,9 +80,41 @@ class _ProductWidgetsState extends State<ProductWidgets> {
                       ),
                       Flexible(
                         child: IconButton(
-                          onPressed: () {
-                            wishlistProvider.addProductToCartAndRemoveWishlist(
-                                productID: widget.productId);
+                          onPressed: () async {
+                            // wishlistProvider.addProductToCartAndRemoveWishlist(
+                            //     productID: widget.productId);
+                            // setState(() {
+                            //   isLoading = true;
+                            // });
+                            try {
+                              if (wishlistProvider.getWishlistItem
+                                  .containsKey(widget.productId)) {
+                                wishlistProvider.removeWishlistItemFromFirebase(
+                                    wishlistId: wishlistProvider
+                                        .getWishlistItem[widget.productId]!.id,
+                                    productId: widget.productId);
+                              } else {
+                                wishlistProvider.addToWishlistFirebase(
+                                    productId: widget.productId,
+                                    context: context);
+                              }
+                              await wishlistProvider.fetchWishlist();
+                            } catch (e) {
+                              AlertDialogMethods.showError(
+                                context: context,
+                                titleBottom: "Ok",
+                                lottileAnimation: MangerImage.kError,
+                                subtitle: e.toString(),
+                                function: () {
+                                  Navigator.pop(context);
+                                },
+                              );
+                            }
+                            // finally {
+                            //   setState(() {
+                            //     isLoading = false;
+                            //   });
+                            // }
                           },
                           icon: wishlistProvider.isProductInWishlist(
                                   productId: widget.productId)

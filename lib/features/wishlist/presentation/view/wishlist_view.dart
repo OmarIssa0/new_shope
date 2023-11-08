@@ -28,8 +28,9 @@ class WishlistView extends StatelessWidget {
                       context: context,
                       titleBottom: "Delete Wishlist",
                       lottileAnimation: MangerImage.kDeleteCartAndWishlist,
-                      function: () {
-                        wishlistProvider.clearLocalWishlist();
+                      function: () async {
+                        await wishlistProvider.clearCartFromFirebase();
+                        // ignore: use_build_context_synchronously
                         Navigator.of(context).pop();
                       },
                     );

@@ -40,26 +40,6 @@ class BottomNavBarDetailsView extends StatelessWidget {
                 height: 50.h,
                 color: Colors.black54,
                 onPressed: () async {
-                  // if (cartProvider.isProductInCart(
-                  //     productId: getCurrProduct.productId)) {
-                  //   return;
-                  // }
-                  // try {
-                  //   await cartProvider.addToCartFirebase(
-                  //       productId: getCurrProduct.productId,
-                  //       qty: 1,
-                  //       context: context);
-                  // } catch (e) {
-                  //   AlertDialogMethods.showError(
-                  //     context: context,
-                  //     titleBottom: "Ok",
-                  //     lottileAnimation: MangerImage.kError,
-                  //     subtitle: e.toString(),
-                  //     function: () {
-                  //       Navigator.pop(context);
-                  //     },
-                  //   );
-                  // }
                   if (cartProvider.isProductInCart(
                       productId: getCurrProduct.productId)) {
                     return;
@@ -80,8 +60,6 @@ class BottomNavBarDetailsView extends StatelessWidget {
                       },
                     );
                   }
-                  // cartProvider.addProductToCart(
-                  //     productID: getCurrProduct.productId);
                 },
                 child: cartProvider.isProductInCart(
                         productId: getCurrProduct!.productId)
@@ -118,10 +96,33 @@ class BottomNavBarDetailsView extends StatelessWidget {
                 color: Colors.black54,
               ),
               child: IconButton(
-                  onPressed: () {
-                    wishlistProvider.addProductToCartAndRemoveWishlist(
-                      productID: productId,
-                    );
+                  onPressed: () async {
+                    // wishlistProvider.addProductToCartAndRemoveWishlist(
+                    //   productID: productId,
+                    // );
+                    try {
+                      if (wishlistProvider.getWishlistItem
+                          .containsKey(productId)) {
+                        wishlistProvider.removeWishlistItemFromFirebase(
+                            wishlistId:
+                                wishlistProvider.getWishlistItem[productId]!.id,
+                            productId: productId);
+                      } else {
+                        wishlistProvider.addToWishlistFirebase(
+                            productId: productId, context: context);
+                      }
+                      await wishlistProvider.fetchWishlist();
+                    } catch (e) {
+                      AlertDialogMethods.showError(
+                        context: context,
+                        titleBottom: "Ok",
+                        lottileAnimation: MangerImage.kError,
+                        subtitle: e.toString(),
+                        function: () {
+                          Navigator.pop(context);
+                        },
+                      );
+                    }
                   },
                   icon:
                       wishlistProvider.isProductInWishlist(productId: productId)

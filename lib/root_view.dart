@@ -10,6 +10,7 @@ import 'package:new_shope/features/home/presentation/view/home_view.dart';
 import 'package:new_shope/features/profile/presentation/view/profile_view.dart';
 import 'package:new_shope/features/search/presentation/manger/provider/product_provider.dart';
 import 'package:new_shope/features/search/presentation/view/search_view.dart';
+import 'package:new_shope/features/wishlist/presentation/view_model/provider/wishlist_provider.dart';
 import 'package:provider/provider.dart';
 
 class RootView extends StatefulWidget {
@@ -43,13 +44,16 @@ class _RootViewState extends State<RootView> {
   Future<void> fetchFCT() async {
     final productsProvider =
         Provider.of<ProductProvider>(context, listen: false);
-    final cartProvider = Provider.of<CartProvider>(context);
+    final cartProvider = Provider.of<CartProvider>(context, listen: false);
+    final wishlistProvider =
+        Provider.of<WishlistProvider>(context, listen: false);
     try {
       Future.wait({
         productsProvider.fetchProducts(),
       });
       Future.wait({
         cartProvider.fetchCart(),
+        wishlistProvider.fetchWishlist(),
       });
     } catch (error) {
       log(error.toString());

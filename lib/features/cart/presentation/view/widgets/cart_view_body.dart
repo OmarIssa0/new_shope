@@ -50,6 +50,7 @@ class CartViewBody extends StatelessWidget {
                       lottileAnimation: MangerImage.kDeleteCartAndWishlist,
                       function: () async {
                         await cartProvider.clearCartFromFirebase();
+                        // ignore: use_build_context_synchronously
                         Navigator.of(context).pop();
                       },
                       isError: false,

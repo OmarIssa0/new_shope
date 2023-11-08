@@ -31,7 +31,6 @@ class CartViewBody extends StatelessWidget {
                 function: () {
                   Navigator.of(context).pushNamed(RootView.kRoot);
                 },
-                
               ),
             ],
           )
@@ -49,8 +48,8 @@ class CartViewBody extends StatelessWidget {
                       context: context,
                       titleBottom: 'Delete My Cart',
                       lottileAnimation: MangerImage.kDeleteCartAndWishlist,
-                      function: () {
-                        cartProvider.clearLocal();
+                      function: () async {
+                        await cartProvider.clearCartFromFirebase();
                         Navigator.of(context).pop();
                       },
                       isError: false,

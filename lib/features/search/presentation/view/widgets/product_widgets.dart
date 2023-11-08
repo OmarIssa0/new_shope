@@ -2,6 +2,8 @@ import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:iconly/iconly.dart';
+import 'package:new_shope/core/utils/app_image.dart';
+import 'package:new_shope/core/utils/widgets/alert_dialog.dart';
 import 'package:new_shope/core/utils/widgets/title_text.dart';
 import 'package:new_shope/features/cart/presentation/manger/provider/cart_provider.dart';
 import 'package:new_shope/features/details/presentation/view/details_view.dart';
@@ -113,13 +115,29 @@ class _ProductWidgetsState extends State<ProductWidgets> {
                             color: Colors.grey.shade200,
                             child: InkWell(
                               borderRadius: BorderRadius.circular(10.r),
-                              onTap: () {
+                              onTap: () async {
                                 if (cartProvider.isProductInCart(
                                     productId: getCurrentProduct.productId)) {
                                   return;
                                 }
-                                cartProvider.addProductToCart(
-                                    productID: getCurrentProduct.productId);
+                                try {
+                                  await cartProvider.addToCartFirebase(
+                                      productId: getCurrentProduct.productId,
+                                      qty: 1,
+                                      context: context);
+                                } catch (e) {
+                                  AlertDialogMethods.showError(
+                                    context: context,
+                                    titleBottom: "Ok",
+                                    lottileAnimation: MangerImage.kError,
+                                    subtitle: e.toString(),
+                                    function: () {
+                                      Navigator.pop(context);
+                                    },
+                                  );
+                                }
+                                // cartProvider.addProductToCart(
+                                //     productID: getCurrentProduct.productId);
                               },
                               child: Padding(
                                 padding: const EdgeInsets.all(8.0),

@@ -31,6 +31,7 @@ class CartViewBody extends StatelessWidget {
                 function: () {
                   Navigator.of(context).pushNamed(RootView.kRoot);
                 },
+                
               ),
             ],
           )

@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -36,7 +37,7 @@ class _TextFiledSignUpState extends State<TextFiledSignUp> {
   // loading in signUp
   bool _isLoading = false;
   // auth firebase
-  // final auth = FirebaseAuth.instance;
+  final authFirebase = FirebaseAuth.instance;
 
   @override
   void initState() {
@@ -83,6 +84,17 @@ class _TextFiledSignUpState extends State<TextFiledSignUp> {
           email: _emailTextController.text.trim(),
           password: _passwordTextController.text.trim(),
         );
+        User? user = authFirebase.currentUser;
+        final uid = user!.uid;
+        await FirebaseFirestore.instance.collection("users").doc(uid).set({
+          "userId": uid,
+          "userName": _nameTextController.text,
+          "userImage": "",
+          "userEmail": _emailTextController.text.toLowerCase(),
+          "createdAt": Timestamp.now(),
+          "userWishlist": [],
+          "userCart": [],
+        });
         Fluttertoast.showToast(
           msg: "An account has been created",
           toastLength: Toast.LENGTH_SHORT,

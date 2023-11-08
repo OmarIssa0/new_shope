@@ -87,7 +87,7 @@ class _LoginTextFiledState extends State<LoginTextFiled> {
           await Navigator.of(context)
               .pushNamedAndRemoveUntil(RootView.kRoot, (route) => false);
         } else {
-          FirebaseAuth.instance.currentUser!.sendEmailVerification();
+          // FirebaseAuth.instance.currentUser!.sendEmailVerification();
           if (!mounted) return;
           AlertDialogMethods.showDialogForgotPassword(
             context: context,

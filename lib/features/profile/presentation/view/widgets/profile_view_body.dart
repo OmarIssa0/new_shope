@@ -19,10 +19,51 @@ class ProfileViewBody extends StatefulWidget {
   State<ProfileViewBody> createState() => _ProfileViewBodyState();
 }
 
-class _ProfileViewBodyState extends State<ProfileViewBody> {
+class _ProfileViewBodyState extends State<ProfileViewBody>
+    with AutomaticKeepAliveClientMixin {
+  @override
+  bool get wantKeepAlive => true;
   User? user = FirebaseAuth.instance.currentUser;
+  // UserModel? userModel;
+
+  // bool _isLoading = true;
+
+  // Future<void> fetchUserInfo() async {
+  //   if (user == null) {
+  //     setState(() {
+  //       _isLoading = false;
+  //     });
+  //     return;
+  //   }
+  //   final userProvider = Provider.of<UserProvider>(context, listen: false);
+  //   try {
+  //     UserModel? userModel = await userProvider.fatchUserInfo();
+  //   } catch (error) {
+  //     AlertDialogMethods.showError(
+  //       context: context,
+  //       subtitle: "An error has been occured $error",
+  //       titleBottom: "Ok",
+  //       lottileAnimation: MangerImage.kError,
+  //       function: () {
+  //         Navigator.of(context).pop();
+  //       },
+  //     );
+  //   } finally {
+  //     setState(() {
+  //       _isLoading = false;
+  //     });
+  //   }
+  // }
+
+  // @override
+  // void initState() {
+  //   fetchUserInfo();
+  //   super.initState();
+  // }
+
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return SingleChildScrollView(
       child: Column(
         children: [
@@ -33,7 +74,7 @@ class _ProfileViewBodyState extends State<ProfileViewBody> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 TitleTextAppCustom(label: 'General', fontSize: 18.sp),
-                const GeneralList(),
+                user == null ? const SizedBox.shrink() : const GeneralList(),
                 SizedBox(
                   height: 25.h,
                 ),

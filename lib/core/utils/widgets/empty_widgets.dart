@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lottie/lottie.dart';
+import 'package:new_shope/core/utils/app_image.dart';
 import 'package:new_shope/core/utils/widgets/title_text.dart';
 
 class EmptyWidgets extends StatelessWidget {
@@ -8,7 +9,8 @@ class EmptyWidgets extends StatelessWidget {
       {super.key,
       required this.title,
       required this.subTitle,
-      required this.titleBottom, required this.function});
+      required this.titleBottom,
+      required this.function});
 
   final String title, subTitle, titleBottom;
   final Function function;
@@ -22,7 +24,7 @@ class EmptyWidgets extends StatelessWidget {
             height: 70.h,
           ),
           LottieBuilder.asset(
-            'assets/lottile/animation_lnlrqieq.json',
+            MangerImage.kInlrqieq,
             height: 275.h,
             width: double.infinity,
           ),
@@ -44,7 +46,9 @@ class EmptyWidgets extends StatelessWidget {
             ),
             height: 55.h,
             color: Colors.red.shade300,
-            onPressed: () {function();},
+            onPressed: () {
+              function();
+            },
             child: TitleTextAppCustom(
               label: titleBottom,
               fontSize: 18.sp,

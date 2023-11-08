@@ -19,4 +19,5 @@ class MangerImage {
   static const kLogout = "assets/lottile/logout.json";
   static const kSendEmail = "assets/lottile/send_email.json";
   static const kError = "assets/lottile/error.json";
+  static const kInlrqieq = 'assets/lottile/animation_lnlrqieq.json';
 }

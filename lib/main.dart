@@ -20,6 +20,8 @@ import 'package:new_shope/firebase_options.dart';
 import 'package:new_shope/root_view.dart';
 import 'package:provider/provider.dart';
 
+import 'features/sign_up/presentation/view_model/provider/user_provider.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   // await Firebase.initializeApp();
@@ -60,13 +62,16 @@ class _MyAppState extends State<MyApp> {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(
-          create: (context) => ProductProvider(),
+          create: (_) => ProductProvider(),
         ),
         ChangeNotifierProvider(
-          create: (context) => CartProvider(),
+          create: (_) => CartProvider(),
         ),
         ChangeNotifierProvider(
           create: (_) => WishlistProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => UserProvider(),
         ),
       ],
       child: ScreenUtilInit(

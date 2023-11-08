@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:iconly/iconly.dart';
+import 'package:new_shope/core/utils/app_image.dart';
+import 'package:new_shope/core/utils/widgets/alert_dialog.dart';
 import 'package:new_shope/core/utils/widgets/title_text.dart';
 import 'package:new_shope/features/wishlist/presentation/view_model/provider/wishlist_provider.dart';
 import 'package:provider/provider.dart';
@@ -37,13 +39,49 @@ class BottomNavBarDetailsView extends StatelessWidget {
                 ),
                 height: 50.h,
                 color: Colors.black54,
-                onPressed: () {
+                onPressed: () async {
+                  // if (cartProvider.isProductInCart(
+                  //     productId: getCurrProduct.productId)) {
+                  //   return;
+                  // }
+                  // try {
+                  //   await cartProvider.addToCartFirebase(
+                  //       productId: getCurrProduct.productId,
+                  //       qty: 1,
+                  //       context: context);
+                  // } catch (e) {
+                  //   AlertDialogMethods.showError(
+                  //     context: context,
+                  //     titleBottom: "Ok",
+                  //     lottileAnimation: MangerImage.kError,
+                  //     subtitle: e.toString(),
+                  //     function: () {
+                  //       Navigator.pop(context);
+                  //     },
+                  //   );
+                  // }
                   if (cartProvider.isProductInCart(
                       productId: getCurrProduct.productId)) {
                     return;
                   }
-                  cartProvider.addProductToCart(
-                      productID: getCurrProduct.productId);
+                  try {
+                    await cartProvider.addToCartFirebase(
+                        productId: getCurrProduct.productId,
+                        qty: 1,
+                        context: context);
+                  } catch (e) {
+                    AlertDialogMethods.showError(
+                      context: context,
+                      titleBottom: "Ok",
+                      lottileAnimation: MangerImage.kError,
+                      subtitle: e.toString(),
+                      function: () {
+                        Navigator.pop(context);
+                      },
+                    );
+                  }
+                  // cartProvider.addProductToCart(
+                  //     productID: getCurrProduct.productId);
                 },
                 child: cartProvider.isProductInCart(
                         productId: getCurrProduct!.productId)

@@ -5,7 +5,6 @@ import 'package:new_shope/features/home/presentation/view/widgets/box_item_card.
 import 'package:new_shope/features/home/presentation/view/widgets/swiper_image.dart';
 import 'package:new_shope/features/search/presentation/manger/provider/product_provider.dart';
 import 'package:provider/provider.dart';
-import '../../../../search/presentation/manger/model/product.model.dart';
 import 'grid_view_category.dart';
 
 class HomeViewBody extends StatelessWidget {
@@ -14,12 +13,12 @@ class HomeViewBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final productProvider = Provider.of<ProductProvider>(context);
-    final passedCategory = ModalRoute.of(context)!.settings.arguments;
+    // final passedCategory = ModalRoute.of(context)!.settings.arguments;
 
-    final List<ProductModel> productList = passedCategory == null
-        ? productProvider.getProducts
-        : productProvider.findByCategory(
-            categoryName: passedCategory.toString());
+    // final List<ProductModel> productList = passedCategory == null
+    //     ? productProvider.getProducts
+    //     : productProvider.findByCategory(
+    //         categoryName: passedCategory.toString());
     // Size size = MediaQuery.of(context).size;
     return SingleChildScrollView(
       child: Column(
@@ -61,14 +60,14 @@ class HomeViewBody extends StatelessWidget {
             height: 240.h,
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
-              itemCount: productList.length,
+              itemCount: productProvider.getProducts.length,
               itemBuilder: (context, index) {
                 return Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 7.5),
                   child: ChangeNotifierProvider.value(
                     value: productProvider.getProducts[index],
                     child: BoxItemCard(
-                      productId: productList[index].productId,
+                      productId: productProvider.getProducts[index].productId,
                     ),
                   ),
                 );

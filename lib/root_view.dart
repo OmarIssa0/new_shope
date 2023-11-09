@@ -10,6 +10,7 @@ import 'package:new_shope/features/home/presentation/view/home_view.dart';
 import 'package:new_shope/features/profile/presentation/view/profile_view.dart';
 import 'package:new_shope/features/search/presentation/manger/provider/product_provider.dart';
 import 'package:new_shope/features/search/presentation/view/search_view.dart';
+import 'package:new_shope/features/sign_up/presentation/view_model/provider/user_provider.dart';
 import 'package:new_shope/features/wishlist/presentation/view_model/provider/wishlist_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -47,9 +48,11 @@ class _RootViewState extends State<RootView> {
     final cartProvider = Provider.of<CartProvider>(context, listen: false);
     final wishlistProvider =
         Provider.of<WishlistProvider>(context, listen: false);
+    final userProvider = Provider.of<UserProvider>(context, listen: false);
     try {
       Future.wait({
         productsProvider.fetchProducts(),
+        userProvider.fatchUserInfo(),
       });
       Future.wait({
         cartProvider.fetchCart(),

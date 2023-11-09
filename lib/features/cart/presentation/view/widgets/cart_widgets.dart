@@ -24,6 +24,7 @@ class CartWidgets extends StatelessWidget {
     final getCurrentProduct =
         productProviderCart.findByProductId(cartModelProvider.productID);
     // add wishlist
+    // ignore: unused_local_variable
     final wishlistProvider = Provider.of<WishlistProvider>(context);
     // final cartProvider = Provider.of<CartProvider>(context);
     // media query

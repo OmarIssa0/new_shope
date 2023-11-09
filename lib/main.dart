@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:new_shope/core/utils/theme_data.dart';
+import 'package:new_shope/features/all_order/presentation/view/all_order_view.dart';
+import 'package:new_shope/features/all_order/presentation/view_model/provider/order_provider.dart';
 import 'package:new_shope/features/cart/presentation/manger/provider/cart_provider.dart';
 import 'package:new_shope/features/cart/presentation/view/cart_view.dart';
 import 'package:new_shope/features/details/presentation/view/details_view.dart';
@@ -73,6 +75,9 @@ class _MyAppState extends State<MyApp> {
         ChangeNotifierProvider(
           create: (_) => UserProvider(),
         ),
+        ChangeNotifierProvider(
+          create: (_) => OrderProvider(),
+        ),
       ],
       child: ScreenUtilInit(
         designSize: const Size(375, 812),
@@ -100,7 +105,8 @@ class _MyAppState extends State<MyApp> {
                 WishlistView.kWishlist: (context) => const WishlistView(),
                 SignUpView.kSignUp: (context) => const SignUpView(),
                 ForgotPasswordView.kForgotPassword: (context) =>
-                    const ForgotPasswordView()
+                    const ForgotPasswordView(),
+                AllOrderView.kAllOrder: (context) => const AllOrderView(),
               },
               debugShowCheckedModeBanner: false,
               // routerConfig: AppRouter.router,

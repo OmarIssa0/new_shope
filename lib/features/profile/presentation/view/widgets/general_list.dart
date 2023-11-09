@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:iconly/iconly.dart';
+import 'package:new_shope/features/all_order/presentation/view/all_order_view.dart';
 import 'package:new_shope/features/profile/presentation/view/widgets/custom_list_tile.dart';
 import 'package:new_shope/features/wishlist/presentation/view/wishlist_view.dart';
 
@@ -25,7 +26,9 @@ class GeneralList extends StatelessWidget {
                 iconLeading: IconlyBold.folder,
                 iconTrailing: IconlyLight.arrow_right_2,
                 title: 'All Order',
-                function: () {},
+                function: () async {
+                  await Navigator.of(context).pushNamed(AllOrderView.kAllOrder);
+                },
               ),
               CustomListTile(
                 iconLeading: IconlyBold.heart,

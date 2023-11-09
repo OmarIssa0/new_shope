@@ -20,6 +20,7 @@ class DetailsView extends StatelessWidget {
 
     // Navigator
     String productId = ModalRoute.of(context)!.settings.arguments as String;
+    // ignore: unused_local_variable
     final getCurrentProduct = productProviderDetails.findByProductId(productId);
 
     // final productModel = Provider.of<ProductModel>(context);

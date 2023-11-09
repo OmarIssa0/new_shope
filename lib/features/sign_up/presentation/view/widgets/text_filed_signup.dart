@@ -80,6 +80,7 @@ class _TextFiledSignUpState extends State<TextFiledSignUp> {
           _isLoading = true;
         });
 
+        // ignore: unused_local_variable
         final auth = await FirebaseAuth.instance.createUserWithEmailAndPassword(
           email: _emailTextController.text.trim(),
           password: _passwordTextController.text.trim(),

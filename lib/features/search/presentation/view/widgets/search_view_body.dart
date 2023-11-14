@@ -141,7 +141,8 @@ class _SearchViewBodyState extends State<SearchViewBody> {
                     ),
                   ],
                 );
-              }),
+              },
+            ),
     );
   }
 }

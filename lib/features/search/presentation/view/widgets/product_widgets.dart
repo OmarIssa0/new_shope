@@ -58,10 +58,13 @@ class _ProductWidgetsState extends State<ProductWidgets> {
                 children: [
                   ClipRRect(
                     borderRadius: BorderRadius.circular(14.r),
-                    child: FancyShimmerImage(
-                      imageUrl: getCurrentProduct.productImage,
-                      height: size.height * 0.22,
-                      boxFit: BoxFit.fitHeight,
+                    child: Hero(
+                      tag: getCurrentProduct.productId,
+                      child: FancyShimmerImage(
+                        imageUrl: getCurrentProduct.productImage,
+                        height: size.height * 0.22,
+                        boxFit: BoxFit.fitHeight,
+                      ),
                     ),
                   ),
                   SizedBox(

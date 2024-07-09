@@ -30,10 +30,13 @@ class ItemCard extends StatelessWidget {
               height: 135.h,
               // width: 123.w,
               width: double.infinity,
-              child: FancyShimmerImage(
-                imageUrl: productModel.productImage,
-                // 'http/s://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/MT4Q3?wid=1000&hei=1000&fmt=jpeg&qlt=95&.v=1693594240142',
-                boxFit: BoxFit.cover,
+              child: Hero(
+                tag: productModel.productId,
+                child: FancyShimmerImage(
+                  imageUrl: productModel.productImage,
+                  // 'http/s://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/MT4Q3?wid=1000&hei=1000&fmt=jpeg&qlt=95&.v=1693594240142',
+                  boxFit: BoxFit.cover,
+                ),
               ),
             ),
             SizedBox(height: 5.h),

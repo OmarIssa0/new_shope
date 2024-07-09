@@ -3,6 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:new_shope/core/api/firebase_api.dart';
 import 'package:new_shope/core/utils/theme_data.dart';
 import 'package:new_shope/features/all_order/presentation/view/all_order_view.dart';
 import 'package:new_shope/features/all_order/presentation/view_model/provider/order_provider.dart';
@@ -28,6 +29,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   // await Firebase.initializeApp();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  await FirebaseApi().initNotifications();
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,

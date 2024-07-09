@@ -26,13 +26,16 @@ class ImageProductDetailsView extends StatelessWidget {
             padding: const EdgeInsets.all(8.0),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(12.r),
-              child: FancyShimmerImage(
-                imageUrl: getCurrentProduct.productImage,
-                width: double.infinity,
-                height: 325.h,
-                boxFit: BoxFit.cover,
-                errorWidget: const Icon(
-                  Icons.error,
+              child: Hero(
+                tag: getCurrentProduct.productId,
+                child: FancyShimmerImage(
+                  imageUrl: getCurrentProduct.productImage,
+                  width: double.infinity,
+                  height: 325.h,
+                  boxFit: BoxFit.cover,
+                  errorWidget: const Icon(
+                    Icons.error,
+                  ),
                 ),
               ),
             ),

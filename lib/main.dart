@@ -12,14 +12,17 @@ import 'package:new_shope/features/cart/presentation/view/cart_view.dart';
 import 'package:new_shope/features/details/presentation/view/details_view.dart';
 import 'package:new_shope/features/forgot_password/presentation/view/forgot_password_view.dart';
 import 'package:new_shope/features/home/presentation/view/home_view.dart';
+import 'package:new_shope/features/home/presentation/view_model/provider/category_provider.dart';
 import 'package:new_shope/features/profile/presentation/view/profile_view.dart';
 import 'package:new_shope/features/search/presentation/manger/provider/product_provider.dart';
 import 'package:new_shope/features/search/presentation/view/search_view.dart';
 import 'package:new_shope/features/sign_up/presentation/view/signup_view.dart';
 import 'package:new_shope/features/signIn/presentation/view/login_in_view.dart';
+import 'package:new_shope/features/sub_category/view/view_sub_category.dart';
 import 'package:new_shope/features/wishlist/presentation/view/wishlist_view.dart';
 import 'package:new_shope/features/wishlist/presentation/view_model/provider/wishlist_provider.dart';
 import 'package:new_shope/firebase_options.dart';
+// import 'package:new_shope/firebase_options.dart';
 import 'package:new_shope/root_view.dart';
 import 'package:provider/provider.dart';
 
@@ -80,6 +83,9 @@ class _MyAppState extends State<MyApp> {
         ChangeNotifierProvider(
           create: (_) => OrderProvider(),
         ),
+        ChangeNotifierProvider(
+          create: (_) => CategoryProvider(),
+        ),
       ],
       child: ScreenUtilInit(
         designSize: const Size(375, 812),
@@ -109,6 +115,7 @@ class _MyAppState extends State<MyApp> {
                 ForgotPasswordView.kForgotPassword: (context) =>
                     const ForgotPasswordView(),
                 AllOrderView.kAllOrder: (context) => const AllOrderView(),
+                SubCategoryView.routeName: (context) => const SubCategoryView(),
               },
               debugShowCheckedModeBanner: false,
               // routerConfig: AppRouter.router,

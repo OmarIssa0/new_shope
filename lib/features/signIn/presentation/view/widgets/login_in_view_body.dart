@@ -43,7 +43,7 @@ class LoginInViewBody extends StatelessWidget {
             indent: 30.r,
             color: Colors.grey.shade300,
           ),
-          const GoogleSignInBottom(),
+          // const GoogleSignInBottom(),
           SizedBox(height: 50.h),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,

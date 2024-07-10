@@ -22,14 +22,14 @@ class GeneralList extends StatelessWidget {
           ),
           child: Column(
             children: [
-              CustomListTile(
-                iconLeading: IconlyBold.folder,
-                iconTrailing: IconlyLight.arrow_right_2,
-                title: 'All Order',
-                function: () async {
-                  await Navigator.of(context).pushNamed(AllOrderView.kAllOrder);
-                },
-              ),
+              // CustomListTile(
+              //   iconLeading: IconlyBold.folder,
+              //   iconTrailing: IconlyLight.arrow_right_2,
+              //   title: 'All Order',
+              //   function: () async {
+              //     await Navigator.of(context).pushNamed(AllOrderView.kAllOrder);
+              //   },
+              // ),
               CustomListTile(
                 iconLeading: IconlyBold.heart,
                 iconTrailing: IconlyLight.arrow_right_2,
@@ -38,18 +38,18 @@ class GeneralList extends StatelessWidget {
                   await Navigator.of(context).pushNamed(WishlistView.kWishlist);
                 },
               ),
-              CustomListTile(
-                iconLeading: IconlyBold.time_circle,
-                iconTrailing: IconlyLight.arrow_right_2,
-                title: 'Viewed Recently',
-                function: () {},
-              ),
-              CustomListTile(
-                iconLeading: IconlyBold.location,
-                iconTrailing: IconlyLight.arrow_right_2,
-                title: 'Address',
-                function: () {},
-              ),
+              // CustomListTile(
+              //   iconLeading: IconlyBold.time_circle,
+              //   iconTrailing: IconlyLight.arrow_right_2,
+              //   title: 'Viewed Recently',
+              //   function: () {},
+              // ),
+              // CustomListTile(
+              //   iconLeading: IconlyBold.location,
+              //   iconTrailing: IconlyLight.arrow_right_2,
+              //   title: 'Address',
+              //   function: () {},
+              // ),
             ],
           ),
         ),

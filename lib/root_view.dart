@@ -7,6 +7,7 @@ import 'package:iconly/iconly.dart';
 import 'package:new_shope/features/cart/presentation/manger/provider/cart_provider.dart';
 import 'package:new_shope/features/cart/presentation/view/cart_view.dart';
 import 'package:new_shope/features/home/presentation/view/home_view.dart';
+import 'package:new_shope/features/home/presentation/view_model/provider/category_provider.dart';
 import 'package:new_shope/features/profile/presentation/view/profile_view.dart';
 import 'package:new_shope/features/search/presentation/manger/provider/product_provider.dart';
 import 'package:new_shope/features/search/presentation/view/search_view.dart';
@@ -30,7 +31,7 @@ class _RootViewState extends State<RootView> {
   List<Widget> screen = [
     const HomeView(),
     const SearchView(),
-    const CartView(),
+    // const CartView(),
     const ProfileView(),
   ];
 
@@ -49,8 +50,11 @@ class _RootViewState extends State<RootView> {
     final wishlistProvider =
         Provider.of<WishlistProvider>(context, listen: false);
     final userProvider = Provider.of<UserProvider>(context, listen: false);
+    final categoryProvider =
+        Provider.of<CategoryProvider>(context, listen: false);
     try {
       Future.wait({
+        categoryProvider.fetchCategory(),
         productsProvider.fetchProducts(),
         userProvider.fatchUserInfo(),
       });

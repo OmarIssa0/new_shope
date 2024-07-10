@@ -15,7 +15,7 @@ class FirebaseApi {
     final FCMToken = await _firebaseMassaging.getToken();
 
     // print the token (normally you would send this to your server)
-    print("Token : $FCMToken");
+    // print("Token : $FCMToken");
     initNotifications();
   }
 

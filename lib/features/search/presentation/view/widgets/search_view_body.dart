@@ -67,7 +67,7 @@ class _SearchViewBodyState extends State<SearchViewBody> {
                 } else if (snapshot.data == null) {
                   return const Center(
                     child: TitleTextAppCustom(
-                        label: "No product has been added", fontSize: 15),
+                        label: "No category has been added", fontSize: 15),
                   );
                 }
                 return Column(
